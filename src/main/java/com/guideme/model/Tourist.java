@@ -8,6 +8,8 @@ import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Getter
@@ -18,9 +20,18 @@ import javax.persistence.Id;
 @Entity
 public class Tourist {
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+	@Column(nullable = false)
 	private String email;
 	@Column(nullable = false)
-	private String touristName;
+	private String phone;
+	@Column(nullable = false)
+	private String firstName;
+	@Column(nullable = false)
+	private String lastName;
+	@Column(nullable = false)
+	private String city;
 	@Column(nullable = false)
 	private String nationality;
 }
