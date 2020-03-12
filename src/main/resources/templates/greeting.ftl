@@ -4,7 +4,6 @@
     <h1 class="pages__HeaderText-ahg9qh-6 fwTLVF" opacity="1">to explore</h1>
     <h1 class="pages__HeaderText-ahg9qh-6 fwTLVF" opacity="1">the world</h1>
     <a class="cGlexN" href="/login" opacity="1">Start to explore ->
-        <#--        <img src="/static/assets/Back_Arrow_white.svg" alt="">-->
     </a>
 </div>
 
@@ -27,7 +26,7 @@
     }
 
     .jQKrkx {
-        margin-top: 0px;
+        margin-top: 0;
         margin-right: auto;
         text-align: center;
         color: white;
@@ -50,7 +49,6 @@
     .larIlh {
         font-size: calc(12px + ((4 * (100vw - 320px)) / 1180));
         color: white;
-        text-decoration-line: none;
         text-decoration-style: initial;
         text-decoration-color: initial;
         text-decoration: none;
@@ -80,8 +78,8 @@
         font-size: 2em;
         margin-block-start: 0.67em;
         margin-block-end: 0.67em;
-        margin-inline-start: 0px;
-        margin-inline-end: 0px;
+        margin-inline-start: 0;
+        margin-inline-end: 0;
         font-weight: bold;
     }
 
@@ -89,7 +87,6 @@
         font-size: 26px;
         font-weight: normal;
         letter-spacing: -0.46px;
-        text-decoration-line: none;
         text-decoration-style: initial;
         text-decoration-color: initial;
         text-decoration: none;
