@@ -31,10 +31,6 @@ public class User implements UserDetails {
 	private String password;
 	@Column(nullable = false)
 	private boolean active;
-	//	@ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
-//	@CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "email"))
-//	@Enumerated(EnumType.STRING)
-//	private Set<Role> roles;
 	@Column(nullable = false)
 	@Enumerated(EnumType.STRING)
 	private Role role;

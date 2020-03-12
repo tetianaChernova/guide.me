@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.Transient;
+import javax.validation.constraints.NotBlank;
 import java.util.Date;
 
 @Getter
@@ -24,4 +26,6 @@ public class GuideDto {
 	private String nationality;
 	private Integer experience;
 	private String password;
+	@Transient
+	private String password2;
 }

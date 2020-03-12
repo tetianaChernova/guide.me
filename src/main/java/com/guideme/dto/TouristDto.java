@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.Transient;
+
 @Getter
 @Setter
 @Builder
@@ -19,5 +21,7 @@ public class TouristDto {
 	private String city;
 	private String nationality;
 	private String password;
+	@Transient
+	private String password2;
 }
 

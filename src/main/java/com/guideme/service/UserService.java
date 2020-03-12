@@ -24,6 +24,14 @@ public class UserService implements UserDetailsService {
 	@Resource
 	private PasswordEncoder passwordEncoder;
 
+	public User findByEmail(String email){
+		return userRepo.findByEmail(email);
+	};
+
+	public User save(String email){
+		return userRepo.findByEmail(email);
+	};
+
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 		User foundCreds = userRepo.findByEmail(email);

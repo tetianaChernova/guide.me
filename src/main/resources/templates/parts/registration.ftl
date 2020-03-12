@@ -10,17 +10,40 @@
                 <p class="hint-text">Create your account. It's free and only takes a minute.</p>
                 <div class="form-group">
                     <div class="row">
-                        <div class="col-xs-6"><input type="text" class="form-control" name="firstName"
-                                                     placeholder="First Name" required="required"></div>
-                        <div class="col-xs-6"><input type="text" class="form-control" name="lastName"
-                                                     placeholder="Last Name" required="required"></div>
+                        <div class="col">
+                            <input type="text"
+                                   name="firstName"
+                                   class="form-control"
+                                   value="<#if user??>${user.firstName}</#if>"
+                                   placeholder="First Name" required="required">
+                        </div>
+                        <div class="col">
+                            <input type="text"
+                                   name="lastName"
+                                   class="form-control"
+                                   value="<#if user??>${user.lastName}</#if>"
+                                   placeholder="Last Name" required="required">
+                        </div>
                     </div>
                 </div>
                 <div class="form-group">
-                    <input type="email" class="form-control" name="email" placeholder="Email" required="required">
+                    <input type="email"
+                           name="email"
+                           class="form-control ${(emailError??)?string('is-invalid', '')}"
+                           value="<#if user??>${user.email}</#if>"
+                           placeholder="Email" required="required">
+                    <#if emailError??>
+                        <div class="invalid-feedback">
+                            ${emailError}
+                        </div>
+                    </#if>
                 </div>
                 <div class="form-group">
-                    <input type="tel" class="form-control" name="phone" pattern="^\+[1-9]{1}[0-9]{3,14}$"
+                    <input type="tel"
+                           name="phone"
+                           class="form-control"
+                           value="<#if user??>${user.phone}</#if>"
+                           pattern="^\+[1-9]{1}[0-9]{3,14}$"
                            placeholder="Phone" required="required">
                 </div>
                 <#if isGuideRegistrationForm>
@@ -32,7 +55,12 @@
                     </div>
                     <div class="form-group">
                         <div class='input-group date' id='datetimepicker1'>
-                            <input type='text' class="form-control" name="birthDate" required/>
+                            <input type='text'
+                                   name="birthDate"
+                                   class="form-control"
+                                   value="<#if user??>${user.birthDate?date}</#if>"
+                                    <#--value="<#if user??>${user.birthDate?string("MMM dd yyyy HH:mm:ss 'GMT'Z")?date}</#if>"-->
+                                   required/>
                             <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
@@ -40,26 +68,62 @@
 
                     </div>
                     <div class="form-group">
-                        <input id="ex6" type="range" onchange="updateTextInput(this.value);" name="experience"
+                        <input id="ex6"
+                               type="range"
+                               name="experience"
+                               class="form-control"
+                               value="<#if user??>${user.experience}</#if>"
+                               onchange="updateTextInput(this.value);"
                                data-slider-step="1" min="0" max="40"
                                value="0"/>
                         <span>Experience year: <span id="rangeValueText"></span></span>
                     </div>
                 </#if>
                 <div class="form-group">
-                    <input type="text" class="form-control" name="city" placeholder="City" required="required">
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" name="nationality" placeholder="Nationality"
+                    <input type="text"
+                           name="city"
+                           class="form-control"
+                           value="<#if user??>${user.city}</#if>"
+                           placeholder="City"
                            required="required">
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control" name="password" placeholder="Password"
+                    <input type="text"
+                           name="nationality"
+                           value="<#if user??>${user.nationality}</#if>"
+                           class="form-control"
+                           placeholder="Nationality"
                            required="required">
                 </div>
                 <div class="form-group">
-                    <label class="checkbox-inline"><input type="checkbox" required="required"> I accept the <a href="#">Terms
-                            of Use</a> &amp; <a href="#">Privacy Policy</a></label>
+                    <input type="password"
+                           name="password"
+                           class="form-control ${(passwordError??)?string('is-invalid', '')}"
+                           placeholder="Password"
+                           required="required">
+                    <#if passwordError??>
+                        <div class="invalid-feedback">
+                            ${passwordError}
+                        </div>
+                    </#if>
+                </div>
+                <div class="form-group">
+                    <input type="password"
+                           name="password2"
+                           class="form-control ${(password2Error??)?string('is-invalid', '')}"
+                           placeholder="Confirm password"
+                           required="required">
+                    <#if password2Error??>
+                        <div class="invalid-feedback">
+                            ${password2Error}
+                        </div>
+                    </#if>
+                </div>
+                <div class="form-group">
+                    <label class="checkbox-inline">
+                        <input type="checkbox" required="required"> I accept the <a href="#">Terms
+                            of Use</a> &amp; <a href="#">Privacy Policy</a>
+                    </label>
                 </div>
                 <input type="hidden" name="_csrf" value="${_csrf.token}"/>
                 <div class="form-group">
