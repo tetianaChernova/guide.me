@@ -2,13 +2,8 @@ package com.guideme.controller;
 
 import com.guideme.dto.GuideDto;
 import com.guideme.dto.TouristDto;
-import com.guideme.model.Guide;
-import com.guideme.model.Role;
-import com.guideme.model.Tourist;
-import com.guideme.model.User;
-import com.guideme.repos.GuideRepo;
-import com.guideme.repos.TouristRepo;
-import com.guideme.repos.UserRepo;
+import com.guideme.service.GuideService;
+import com.guideme.service.TouristService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,11 +17,10 @@ import javax.annotation.Resource;
 public class RegistrationController {
 
 	@Resource
-	private UserRepo userRepo;
+	private GuideService guideService;
 	@Resource
-	private GuideRepo guideRepo;
-	@Resource
-	private TouristRepo touristRepo;
+	private TouristService touristService;
+
 
 	@GetMapping("/tourist")
 	public String registrationTourist() {
@@ -35,28 +29,11 @@ public class RegistrationController {
 
 	@PostMapping("/tourist")
 	public String addTourist(TouristDto touristDto, Model model) {
-		Tourist to = Tourist.builder()
-				.email(touristDto.getEmail())
-				.phone(touristDto.getPhone())
-				.firstName(touristDto.getFirstName())
-				.lastName(touristDto.getLastName())
-				.city(touristDto.getCity())
-				.nationality(touristDto.getNationality())
-				.build();
-		User foundUser = userRepo.findByEmail(to.getEmail());
-		if (foundUser != null) {
+
+		if (!touristService.addTourist(touristDto)) {
 			model.addAttribute("message", "User exists!");
-			return "registrationTourist";
+			return "registration";
 		}
-		User user = User.builder()
-				.email(to.getEmail())
-				.active(true)
-				.role(Role.TOURIST)
-				.password(touristDto.getPassword())
-				.build();
-		touristRepo.save(to);
-		userRepo.save(user);
-		System.out.println("hi");
 		return "redirect:/login";
 	}
 
@@ -67,32 +44,10 @@ public class RegistrationController {
 
 	@PostMapping("/guide")
 	public String addGuide(GuideDto guideDto, Model model) {
-		Guide guide = Guide.builder()
-				.email(guideDto.getEmail())
-				.phone(guideDto.getPhone())
-				.firstName(guideDto.getFirstName())
-				.lastName(guideDto.getLastName())
-				.birthDate(guideDto.getBirthDate())
-				.gender(guideDto.getGender())
-				.experience(guideDto.getExperience())
-				.rating((double) 0)
-				.city(guideDto.getCity())
-				.nationality(guideDto.getNationality())
-				.build();
-		User foundUser = userRepo.findByEmail(guide.getEmail());
-		if (foundUser != null) {
+		if (!guideService.addGuide(guideDto)) {
 			model.addAttribute("message", "User exists!");
-			return "registrationGuide";
+			return "registration";
 		}
-		User user = User.builder()
-				.email(guide.getEmail())
-				.active(true)
-				.role(Role.GUIDE)
-				.password(guideDto.getPassword())
-				.build();
-		guideRepo.save(guide);
-		userRepo.save(user);
-		System.out.println("hi");
 		return "redirect:/login";
 	}
 }

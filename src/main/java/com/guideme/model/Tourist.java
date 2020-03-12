@@ -21,7 +21,7 @@ import javax.persistence.Id;
 public class Tourist {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+	private Long touristId;
 	@Column(nullable = false)
 	private String email;
 	@Column(nullable = false)

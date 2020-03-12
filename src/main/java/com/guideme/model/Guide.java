@@ -11,7 +11,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import java.util.Date;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -22,7 +24,7 @@ import java.util.Date;
 public class Guide {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+	private Long guideId;
 	@Column(nullable = false)
 	private String email;
 	@Column(nullable = false)
@@ -35,6 +37,7 @@ public class Guide {
 	private Date birthDate;
 	@Column(nullable = false)
 	private String gender;
+	@Column(nullable = false)
 	private Integer experience;
 	@Column(nullable = false)
 	private Double rating;
@@ -42,4 +45,6 @@ public class Guide {
 	private String nationality;
 	@Column(nullable = false)
 	private String city;
+	@OneToMany(mappedBy = "guide")
+	private Set<Excursion> excursions;
 }

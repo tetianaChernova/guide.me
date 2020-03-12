@@ -17,7 +17,7 @@ public class MainController {
 
 	@GetMapping("/")
 	public String greeting(Model model) {
-		return "greeting";
+		return "landingPade";
 	}
 
 	@GetMapping("/main")

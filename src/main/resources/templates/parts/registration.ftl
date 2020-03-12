@@ -25,17 +25,25 @@
                 </div>
                 <#if isGuideRegistrationForm>
                     <div class="form-group">
-                        <select type="gender" placeholder="Gender" name="gender" class="form-control">
+                        <select type="gender" name="gender" class="form-control">
                             <option value="female">Female</option>
                             <option value="male">Male</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <input type="date" id="inputField" class="form-control" name="birthDate"
-                               placeholder="Birth date" required="required">
+                        <div class='input-group date' id='datetimepicker1'>
+                            <input type='text' class="form-control" name="birthDate" required/>
+                            <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                        </div>
+
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" name="experience" placeholder="Experience">
+                        <input id="ex6" type="range" onchange="updateTextInput(this.value);" name="experience"
+                               data-slider-step="1" min="0" max="40"
+                               value="0"/>
+                        <span>Experience year: <span id="rangeValueText"></span></span>
                     </div>
                 </#if>
                 <div class="form-group">
@@ -59,11 +67,18 @@
                 </div>
                 <div class="text-center">Already have an account? <a href="/login">Sign in</a></div>
             </form>
+        </form>
     </div>
     <script>
-        $(document).ready(function () {
+        function updateTextInput(value) {
+            console.log("value is: ", value);
+            document.getElementById('rangeValueText').innerHTML = value;
+        }
 
-            $("#inputField").datepicker();
-        })
+        $(function () {
+            $('#datetimepicker1').datetimepicker({
+                format: 'L'
+            });
+        });
     </script>
 </#macro>
