@@ -1,3 +1,4 @@
+<#setting locale="en_US">
 <#macro registration isGuideRegistrationForm>
     <div class="signup-form">
         <#if isGuideRegistrationForm>
@@ -58,8 +59,7 @@
                             <input type='text'
                                    name="birthDate"
                                    class="form-control"
-                                   value="<#if user??>${user.birthDate?date}</#if>"
-                                    <#--value="<#if user??>${user.birthDate?string("MMM dd yyyy HH:mm:ss 'GMT'Z")?date}</#if>"-->
+                                   value="<#if user??>${user.birthDate?datetime?string('dd/MM/yyyy')}</#if>"
                                    required/>
                             <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
