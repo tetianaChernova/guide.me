@@ -8,7 +8,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.annotation.Resource;
@@ -19,27 +18,29 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Resource
 	private UserService userService;
 
-	@Resource PasswordEncoder passwordEncoder;
+	@Resource
+	PasswordEncoder passwordEncoder;
 
 	@Bean
-	PasswordEncoder getPasswordEncoder(){
+	PasswordEncoder getPasswordEncoder() {
 		return new BCryptPasswordEncoder(8);
 	}
+
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 				.authorizeRequests()
-					.antMatchers("/", "/registration/**", "/static/**").permitAll()
-					.anyRequest().authenticated()
+				.antMatchers("/", "/registration/**", "/static/**").permitAll()
+				.anyRequest().authenticated()
 				.and()
-					.formLogin()
-					.loginPage("/login")
-					.usernameParameter("email")
-					.permitAll()
-					.defaultSuccessUrl("/main")
+				.formLogin()
+				.loginPage("/login")
+				.usernameParameter("email")
+				.permitAll()
+				.defaultSuccessUrl("/main")
 				.and()
-					.logout()
-					.logoutSuccessUrl("/")
+				.logout()
+				.logoutSuccessUrl("/")
 				.permitAll();
 	}
 

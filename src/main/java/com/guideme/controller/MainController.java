@@ -1,7 +1,7 @@
 package com.guideme.controller;
 
-import com.guideme.model.Guide;
-import com.guideme.repos.GuideRepo;
+import com.guideme.model.Excursion;
+import com.guideme.service.ExcursionService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,7 +13,7 @@ import javax.annotation.Resource;
 public class MainController {
 
 	@Resource
-	private GuideRepo guideRepo;
+	private ExcursionService excursionService;
 
 	@GetMapping("/")
 	public String greeting(Model model) {
@@ -22,16 +22,15 @@ public class MainController {
 
 	@GetMapping("/main")
 	public String main(@RequestParam(required = false, defaultValue = "") String filter, Model model) {
-		guideRepo.findAll();
-		Iterable<Guide> guides;
+		Iterable<Excursion> excursions;
 		if (filter != null && !filter.isEmpty()) {
-			guides = guideRepo.findByEmail(filter);
-		} else
-			guides = guideRepo.findAll();
-		model.addAttribute("guides", guides);
+			excursions = excursionService.findByCityLike(filter);
+		} else {
+			excursions = excursionService.findAll();
+		}
+		model.addAttribute("excursionList", excursions);
 		model.addAttribute("filter", filter);
 		return "main";
 	}
-
 
 }

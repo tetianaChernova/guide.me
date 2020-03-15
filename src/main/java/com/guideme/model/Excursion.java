@@ -41,13 +41,14 @@ public class Excursion {
 	private String description;
 	@Column(nullable = false)
 	private Integer amount;
+	private String filename;
 
 	@ElementCollection(fetch = FetchType.EAGER)
 	@CollectionTable(name = "excursion_language", joinColumns = @JoinColumn(name = "excursion_id"))
 	private List<String> languages;
 
-	@ElementCollection(fetch = FetchType.EAGER)
-	@CollectionTable(name = "excursion_language", joinColumns = @JoinColumn(name = "excursion_id"))
+	@ElementCollection(fetch = FetchType.LAZY)
+	@CollectionTable(name = "excursion_sightseeings", joinColumns = @JoinColumn(name = "excursion_id"))
 	private List<String> sightseeings;
 
 	@ManyToOne(fetch = FetchType.EAGER)
