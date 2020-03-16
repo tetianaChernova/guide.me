@@ -2,6 +2,7 @@ package com.guideme.controller;
 
 import com.guideme.dto.ExcursionDto;
 import com.guideme.service.ExcursionService;
+import com.guideme.utils.FileUploadUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,17 +36,10 @@ public class ExcursionController {
 
 	@PostMapping
 	public String createExcursion(@RequestParam("file") MultipartFile file, ExcursionDto excursionDto, Model model) throws IOException {
-		if (nonNull(file) && !file.getOriginalFilename().isEmpty()) {
-			File uploadDir = new File(uploadPath);
-			if (!uploadDir.exists()) {
-				uploadDir.mkdir();
-			}
-			String uuidFile = randomUUID().toString();
-			String resultFilename = uuidFile + "." + file.getOriginalFilename();
-			file.transferTo(new File(uploadPath + "/" + resultFilename));
-			excursionDto.setFilename(resultFilename);
-		}
+		FileUploadUtils.setUploadedFile(file, excursionDto, uploadPath);
 		excursionService.save(excursionDto);
 		return "createExcursion";
 	}
+
+
 }

@@ -52,6 +52,6 @@ public class Excursion {
 	private List<String> sightseeings;
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "guide_id")
+	@JoinColumn(name = "guide_id", nullable = false)
 	private Guide guide;
 }

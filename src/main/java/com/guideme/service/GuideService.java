@@ -26,6 +26,7 @@ public class GuideService {
 				.rating((double) 0)
 				.city(guideDto.getCity())
 				.nationality(guideDto.getNationality())
+				.filename(guideDto.getFilename())
 				.build();
 		if (!userService.addGuide(guideDto)) {
 			return false;

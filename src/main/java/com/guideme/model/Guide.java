@@ -45,6 +45,7 @@ public class Guide {
 	private String nationality;
 	@Column(nullable = false)
 	private String city;
+	private String filename;
 	@OneToMany(mappedBy = "guide")
 	private Set<Excursion> excursions;
 }

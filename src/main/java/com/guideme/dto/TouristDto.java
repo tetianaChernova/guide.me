@@ -6,14 +6,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Transient;
-
 @Getter
 @Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class TouristDto {
+public class TouristDto extends FileConsistingDto{
 	private String firstName;
 	private String lastName;
 	private String email;
@@ -21,7 +19,6 @@ public class TouristDto {
 	private String city;
 	private String nationality;
 	private String password;
-	@Transient
 	private String password2;
 }
 

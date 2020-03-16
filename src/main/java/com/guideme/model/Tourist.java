@@ -34,4 +34,5 @@ public class Tourist {
 	private String city;
 	@Column(nullable = false)
 	private String nationality;
+	private String filename;
 }

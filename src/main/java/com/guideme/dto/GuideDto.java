@@ -6,7 +6,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Transient;
 import java.util.Date;
 
 @Getter
@@ -14,7 +13,7 @@ import java.util.Date;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class GuideDto {
+public class GuideDto extends FileConsistingDto{
 	private String firstName;
 	private String lastName;
 	private String email;
@@ -25,6 +24,5 @@ public class GuideDto {
 	private String nationality;
 	private Integer experience;
 	private String password;
-	@Transient
 	private String password2;
 }

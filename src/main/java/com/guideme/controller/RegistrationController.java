@@ -6,6 +6,8 @@ import com.guideme.model.User;
 import com.guideme.service.GuideService;
 import com.guideme.service.TouristService;
 import com.guideme.service.UserService;
+import com.guideme.utils.FileUploadUtils;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,12 +15,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
+import java.io.File;
+import java.io.IOException;
 import java.util.Map;
 
 import static java.util.Objects.nonNull;
+import static java.util.UUID.randomUUID;
 
 @Controller
 @RequestMapping("/registration")
@@ -31,6 +38,9 @@ public class RegistrationController {
 	@Resource
 	private UserService userService;
 
+	@Value("${upload.path}")
+	private String uploadPath;
+
 
 	@GetMapping("/tourist")
 	public String registrationTourist() {
@@ -38,9 +48,14 @@ public class RegistrationController {
 	}
 
 	@PostMapping("/tourist")
-	public String addTourist(@ModelAttribute("user") @Valid TouristDto user, BindingResult bindingResult, Model model) {
-		User foundUser = userService.findByEmail(user.getEmail());
-		boolean notValidPassword = nonNull(user.getPassword()) && !user.getPassword().equals(user.getPassword2());
+	public String addTourist(
+			@RequestParam("file") MultipartFile file,
+			@ModelAttribute("user") @Valid TouristDto tourist,
+			BindingResult bindingResult,
+			Model model) throws IOException {
+		FileUploadUtils.setUploadedFile(file, tourist, uploadPath);
+		User foundUser = userService.findByEmail(tourist.getEmail());
+		boolean notValidPassword = nonNull(tourist.getPassword()) && !tourist.getPassword().equals(tourist.getPassword2());
 		if (notValidPassword) {
 			model.addAttribute("passwordError", "Passwords are different!");
 		}
@@ -56,7 +71,7 @@ public class RegistrationController {
 		if (notValidPassword || nonNull(foundUser)){
 			return "registrationTourist";
 		}
-		touristService.addTourist(user);
+		touristService.addTourist(tourist);
 		return "redirect:/login";
 	}
 
@@ -66,7 +81,12 @@ public class RegistrationController {
 	}
 
 	@PostMapping("/guide")
-	public String addGuide(@ModelAttribute("user") @Valid GuideDto user, BindingResult bindingResult, Model model) {
+	public String addGuide(@RequestParam("file") MultipartFile file,
+						   @ModelAttribute("user") @Valid GuideDto user,
+						   BindingResult bindingResult,
+						   Model model) throws IOException {
+		FileUploadUtils.setUploadedFile(file, user, uploadPath);
+
 		User foundUser = userService.findByEmail(user.getEmail());
 		boolean notValidPassword = nonNull(user.getPassword()) && !user.getPassword().equals(user.getPassword2());
 		if (notValidPassword) {

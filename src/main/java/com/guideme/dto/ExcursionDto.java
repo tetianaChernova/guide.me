@@ -11,7 +11,7 @@ import lombok.Setter;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ExcursionDto {
+public class ExcursionDto extends FileConsistingDto{
 
 	private String title;
 	private String description;
@@ -19,5 +19,4 @@ public class ExcursionDto {
 	private Integer duration;
 	private Integer price;
 	private String city;
-	private String filename;
 }

@@ -23,6 +23,7 @@ public class TouristService {
 				.lastName(touristDto.getLastName())
 				.city(touristDto.getCity())
 				.nationality(touristDto.getNationality())
+				.filename(touristDto.getFilename())
 				.build();
 		if (!userService.addTourist(touristDto)) {
 			return false;

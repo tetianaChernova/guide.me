@@ -2,7 +2,7 @@
 <#macro registration isGuideRegistrationForm>
     <div class="signup-form">
         <#if isGuideRegistrationForm>
-        <form action="/registration/guide" method="post">
+        <form action="/registration/guide" method="post" enctype="multipart/form-data" class="md-form">
             </#if>
             <#if !isGuideRegistrationForm>
             <form action="/registration/tourist" method="post">
@@ -95,6 +95,21 @@
                            placeholder="Nationality"
                            required="required">
                 </div>
+
+<#--                <div class="form-group">-->
+<#--                    <input type="file" class="form-control" name="file">-->
+<#--                </div>-->
+
+<#--                <div class="custom-file">-->
+<#--                    <input type="file" class="custom-file-input" id="customFile">-->
+<#--                    <label class="custom-file-label" for="customFile">Choose file</label>-->
+<#--                </div>-->
+                <div class="custom-file form-group">
+                    <input type="file" class="custom-file-input" id="customFileLang">
+                    <label class="custom-file-label form-control-lg d-inline-block" for="customFileLang" style="color: #969fa4;">Upload photo</label>
+                </div>
+
+
                 <div class="form-group">
                     <input type="password"
                            name="password"
