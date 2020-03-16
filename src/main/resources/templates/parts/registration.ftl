@@ -100,10 +100,6 @@
 <#--                    <input type="file" class="form-control" name="file">-->
 <#--                </div>-->
 
-<#--                <div class="custom-file">-->
-<#--                    <input type="file" class="custom-file-input" id="customFile">-->
-<#--                    <label class="custom-file-label" for="customFile">Choose file</label>-->
-<#--                </div>-->
                 <div class="custom-file form-group">
                     <input type="file" class="custom-file-input" id="customFileLang">
                     <label class="custom-file-label form-control-lg d-inline-block" for="customFileLang" style="color: #969fa4;">Upload photo</label>

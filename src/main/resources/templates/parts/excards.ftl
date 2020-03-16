@@ -26,25 +26,3 @@
         </#list>
     </div>
 </#macro>
-<#--<style>-->
-<#--    .col-sm-4:hover{-->
-<#--        -webkit-box-shadow: -1px 9px 40px -12px rgba(0,0,0,0.75);-->
-<#--        -moz-box-shadow: -1px 9px 40px -12px rgba(0,0,0,0.75);-->
-<#--        box-shadow: -1px 9px 40px -12px rgba(0,0,0,0.75);-->
-<#--    }-->
-<#--</style>-->
-<#--<script>-->
-<#--    $(document).ready(function () {-->
-<#--        $('.card').hover(-->
-<#--            function () {-->
-<#--            $(this).animate({-->
-<#--                marginTop: "-=1%",-->
-<#--            },200)},-->
-
-<#--            function () {-->
-<#--                $(this).animate({-->
-<#--                    marginTop: "0%",-->
-<#--                },200)}-->
-<#--        );-->
-<#--    })-->
-<#--</script>-->

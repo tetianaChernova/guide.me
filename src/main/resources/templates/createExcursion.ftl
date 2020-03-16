@@ -1,5 +1,5 @@
 <#import "parts/common.ftl" as c>
-<@c.page>
+<@c.page "/static/forms.css">
 <form action="/excursions" method="post" enctype="multipart/form-data">
     <div class="form-group row">
         <label for="title" class="col-sm-2 col-form-label">Title</label>
