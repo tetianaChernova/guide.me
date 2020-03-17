@@ -8,7 +8,7 @@
             <form action="/registration/tourist" method="post">
                 </#if>
                 <h2>Register</h2>
-                <p class="hint-text">Create your account. It's free and only takes a minute.</p>
+                <p class="hint-text">Create your account. It's free and only takes few minutes.</p>
                 <div class="form-group">
                     <div class="row">
                         <div class="col">
@@ -101,10 +101,24 @@
 <#--                </div>-->
 
                 <div class="custom-file form-group">
-                    <input type="file" class="custom-file-input" id="customFileLang">
+                    <input type="file" class="custom-file-input" id="customFileLang" name="file">
                     <label class="custom-file-label form-control-lg d-inline-block" for="customFileLang" style="color: #969fa4;">Upload photo</label>
                 </div>
-
+                <#if isGuideRegistrationForm>
+                <div class="form-group">
+                    <input type="text"
+                           name="description"
+                           value="<#if user??>${user.description}</#if>"
+                           class="form-control ${(descriptionError??)?string('is-invalid', '')}"
+                           placeholder="Description"
+                           required="required">
+                    <#if descriptionError??>
+                        <div class="invalid-feedback">
+                            ${descriptionError}
+                        </div>
+                    </#if>
+                </div>
+                </#if>
 
                 <div class="form-group">
                     <input type="password"

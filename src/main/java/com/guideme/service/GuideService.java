@@ -23,6 +23,7 @@ public class GuideService {
 				.birthDate(guideDto.getBirthDate())
 				.gender(guideDto.getGender())
 				.experience(guideDto.getExperience())
+				.description(guideDto.getDescription())
 				.rating((double) 0)
 				.city(guideDto.getCity())
 				.nationality(guideDto.getNationality())
@@ -33,5 +34,13 @@ public class GuideService {
 		}
 		guideRepo.save(guide);
 		return true;
+	}
+
+	public Guide findByGuideId(Long id) {
+		return guideRepo.findByGuideId(id);
+	}
+
+	public Guide findByEmail(String email) {
+		return guideRepo.findByEmail(email);
 	}
 }
