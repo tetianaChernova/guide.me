@@ -22,7 +22,7 @@
                 </div>
             </div>
         <#else>
-            No excursions are available
+            <div class="mx-auto" style="text-align: center;">No excursions are available</div>
         </#list>
     </div>
 </#macro>

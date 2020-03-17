@@ -20,12 +20,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
-import java.io.File;
 import java.io.IOException;
 import java.util.Map;
 
 import static java.util.Objects.nonNull;
-import static java.util.UUID.randomUUID;
 
 @Controller
 @RequestMapping("/registration")
@@ -65,10 +63,10 @@ public class RegistrationController {
 			return "registrationTourist";
 		}
 
-		if (nonNull(foundUser)){
+		if (nonNull(foundUser)) {
 			model.addAttribute("emailError", "User exists!");
 		}
-		if (notValidPassword || nonNull(foundUser)){
+		if (notValidPassword || nonNull(foundUser)) {
 			return "registrationTourist";
 		}
 		touristService.addTourist(tourist);
@@ -82,13 +80,13 @@ public class RegistrationController {
 
 	@PostMapping("/guide")
 	public String addGuide(@RequestParam("file") MultipartFile file,
-						   @ModelAttribute("user") @Valid GuideDto user,
+						   @ModelAttribute("user") @Valid GuideDto guide,
 						   BindingResult bindingResult,
 						   Model model) throws IOException {
-		FileUploadUtils.setUploadedFile(file, user, uploadPath);
+		FileUploadUtils.setUploadedFile(file, guide, uploadPath);
 
-		User foundUser = userService.findByEmail(user.getEmail());
-		boolean notValidPassword = nonNull(user.getPassword()) && !user.getPassword().equals(user.getPassword2());
+		User foundUser = userService.findByEmail(guide.getEmail());
+		boolean notValidPassword = nonNull(guide.getPassword()) && !guide.getPassword().equals(guide.getPassword2());
 		if (notValidPassword) {
 			model.addAttribute("passwordError", "Passwords are different!");
 		}
@@ -97,13 +95,13 @@ public class RegistrationController {
 			model.mergeAttributes(errorsMap);
 			return "registrationGuide";
 		}
-		if (nonNull(foundUser)){
+		if (nonNull(foundUser)) {
 			model.addAttribute("emailError", "User exists!");
 		}
-		if (notValidPassword || nonNull(foundUser)){
+		if (notValidPassword || nonNull(foundUser)) {
 			return "registrationGuide";
 		}
-		guideService.addGuide(user);
+		guideService.addGuide(guide);
 		return "redirect:/login";
 	}
 }

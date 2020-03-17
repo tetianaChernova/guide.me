@@ -1,6 +1,5 @@
 package com.guideme.utils;
 
-import com.guideme.dto.ExcursionDto;
 import com.guideme.dto.FileConsistingDto;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
