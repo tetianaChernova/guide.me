@@ -9,14 +9,18 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import javax.validation.Valid;
 import java.io.IOException;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/excursions")
@@ -39,11 +43,21 @@ public class ExcursionController {
 	public String createExcursion(
 			@AuthenticationPrincipal User user,
 			@RequestParam("file") MultipartFile file,
-			ExcursionDto excursionDto, Model model) throws IOException {
+			@ModelAttribute("excursion") @Valid ExcursionDto excursionDto,
+			BindingResult bindingResult,
+			Model model) throws IOException {
 		excursionDto.setGuide(guideService.findByEmail(user.getEmail()));
 		FileUploadUtils.setUploadedFile(file, excursionDto, uploadPath);
-		excursionService.save(excursionDto);
-		return "createExcursion";
+		if (bindingResult.hasErrors()) {
+			Map<String, String> errorsMap = ControllerUtils.getErrors(bindingResult);
+			model.mergeAttributes(errorsMap);
+			return "createExcursion";
+		}
+		if (!model.containsAttribute("descriptionError")) {
+			excursionService.save(excursionDto);
+		}
+		Long id = excursionDto.getGuide().getGuideId();
+		return "redirect:/guide/" + id;
 	}
 
 

@@ -95,29 +95,38 @@
                            placeholder="Nationality"
                            required="required">
                 </div>
-
-<#--                <div class="form-group">-->
-<#--                    <input type="file" class="form-control" name="file">-->
-<#--                </div>-->
-
                 <div class="custom-file form-group">
-                    <input type="file" class="custom-file-input" id="customFileLang" name="file">
-                    <label class="custom-file-label form-control-lg d-inline-block" for="customFileLang" style="color: #969fa4;">Upload photo</label>
+                    <input type="file"
+                            <#if user??><#if user.filename??>
+                                class="custom-file-input is-invalid"
+                            <#else>
+                                class="custom-file-input"
+                            </#if></#if>
+                           id="customFileLang"
+                           name="file">
+                    <label class="custom-file-label form-control-lg d-inline-block"
+                           for="customFileLang"
+                           style="color: #969fa4;">Upload photo</label>
+                    <#if user??><#if user.filename??>
+                        <div class="invalid-feedback">
+                            Please upload file again
+                        </div>
+                    </#if></#if>
                 </div>
                 <#if isGuideRegistrationForm>
-                <div class="form-group">
-                    <input type="text"
-                           name="description"
-                           value="<#if user??>${user.description}</#if>"
-                           class="form-control ${(descriptionError??)?string('is-invalid', '')}"
-                           placeholder="Description"
-                           required="required">
-                    <#if descriptionError??>
-                        <div class="invalid-feedback">
-                            ${descriptionError}
-                        </div>
-                    </#if>
-                </div>
+                    <div class="form-group">
+                        <textarea
+                                name="description"
+                                rows="3"
+                                class="form-control rounded-0 ${(descriptionError??)?string('is-invalid', '')}"
+                                placeholder="Description"
+                                required="required"><#if user??>${user.description}</#if></textarea>
+                        <#if descriptionError??>
+                            <div class="invalid-feedback">
+                                ${descriptionError}
+                            </div>
+                        </#if>
+                    </div>
                 </#if>
 
                 <div class="form-group">

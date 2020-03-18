@@ -23,8 +23,9 @@ public class ExcursionService {
 				.amount(excursionDto.getAmount())
 				.city(excursionDto.getCity())
 				.priceForOne(excursionDto.getPrice())
-				.duration(excursionDto.getDuration())
+				.duration(excursionDto.getDurationHours() * 60 + excursionDto.getDurationMinutes())
 				.filename(excursionDto.getFilename())
+				.meetingPoint(excursionDto.getMeetingPoint())
 				.build();
 		return excursionRepo.save(excursion);
 	}

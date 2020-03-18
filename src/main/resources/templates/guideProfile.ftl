@@ -67,19 +67,12 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="tab-content tab-space" id="all-exc">
                         <@excards.cards excursions=excursionList></@excards.cards>
                     </div>
-                    <div class="tab-content tab-space" id="works">
-                        <h6>Hello work</h6>
-                    </div>
-
-
                 </div>
             </div>
         </div>
-
         <footer class="footer text-center ">
             <p>Made with <a href="https://demos.creative-tim.com/material-kit/index.html" target="_blank">Material
                     Kit</a>
