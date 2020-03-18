@@ -26,42 +26,66 @@
             </div>
             <div class="form-group">
                 <input type="text"
-                       class="form-control"
+                       class="form-control ${(amountError??)?string('is-invalid', '')}"
                        name="amount"
-                       value="<#if excursion??>${excursion.amount}</#if>"
+                       value="<#if excursion??><#if excursion.amount??>${excursion.amount}</#if></#if>"
                        placeholder="Maximum people amount" required>
+                <#if amountError??>
+                    <div class="invalid-feedback">
+                        "Enter positive number"
+                    </div>
+                </#if>
             </div>
             <div class="form-group">
                 <div class="row">
                     <div class="col">
                         <input type="text"
-                               class="form-control"
+                               class="form-control ${(durationHoursError??)?string('is-invalid', '')}"
                                name="durationHours"
+                               value="<#if excursion??><#if excursion.durationHours??>${excursion.durationHours}</#if></#if>"
                                placeholder="Duration hours"
-                        value="<#if excursion??>${excursion.durationHours}</#if>" required>
+                               required>
+                        <#if durationHoursError??>
+                            <div class="invalid-feedback">
+                                "Enter positive number between 0 and 24"
+                            </div>
+                        </#if>
                     </div>
                     <div class="col">
                         <input type="text"
-                               class="form-control"
+                               class="form-control ${(durationMinutesError??)?string('is-invalid', '')}"
                                name="durationMinutes"
+                               value="<#if excursion??><#if excursion.durationMinutes??>${excursion.durationMinutes}</#if></#if>"
                                placeholder="Duration minutes"
-                        value="<#if excursion??>${excursion.durationMinutes}</#if>" required>
+                               required>
+                        <#if durationMinutesError??>
+                            <div class="invalid-feedback">
+                                "Enter positive number between 0 and 60"
+                            </div>
+                        </#if>
                     </div>
                 </div>
             </div>
             <div class="form-group">
                 <input type="text"
-                       class="form-control"
+                       class="form-control ${(priceError??)?string('is-invalid', '')}"
                        name="price"
+                       value="<#if excursion??><#if excursion.price??>${excursion.price}</#if></#if>"
                        placeholder="Price for one"
-                value="<#if excursion??>${excursion.price}</#if>" required>
+                       required>
+                <#if priceError??>
+                    <div class="invalid-feedback">
+                        "Enter positive number"
+                    </div>
+                </#if>
             </div>
             <div class="form-group">
                 <input type="text"
                        class="form-control"
                        name="city"
+                       value="<#if excursion??>${excursion.city}</#if>"
                        placeholder="City"
-                value="<#if excursion??>${excursion.city}</#if>" required>
+                       required>
             </div>
             <div class="form-group">
                 <input type="text"
@@ -73,9 +97,9 @@
             <div class="custom-file form-group">
                 <input type="file"
                         <#if excursion??><#if excursion.filename??>${excursion.filename}
-                       class="custom-file-input is-invalid"
-                            <#else>
-                                class="custom-file-input"
+                            class="custom-file-input is-invalid"
+                        <#else>
+                            class="custom-file-input"
                         </#if></#if>
                        id="customFileLang"
                        name="file">
