@@ -2,8 +2,10 @@ package com.guideme.controller;
 
 import com.guideme.model.Excursion;
 import com.guideme.model.Guide;
+import com.guideme.model.User;
 import com.guideme.service.ExcursionService;
 import com.guideme.service.GuideService;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,12 +24,14 @@ public class GuideController {
 	private GuideService guideService;
 
 	@GetMapping("/{guideId}")
-	public String guideProfile(@PathVariable Long guideId, Model model) {
+	public String guideProfile(@AuthenticationPrincipal User user,
+							   @PathVariable Long guideId, Model model) {
 		Guide foundedGuide = guideService.findByGuideId(guideId);
 		Iterable<Excursion> excursions;
 		excursions = excursionService.findByGuide(guideService.findByGuideId(guideId));
 		model.addAttribute("excursionList", excursions);
 		model.addAttribute("guide", foundedGuide);
+		model.addAttribute("user", user);
 		return "guideProfile";
 	}
 }

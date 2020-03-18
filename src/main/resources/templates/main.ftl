@@ -1,20 +1,14 @@
 <#import "parts/common.ftl" as c>
 <#import "parts/login.ftl" as l>
 <#import "parts/excards.ftl" as excards>
+<#import "parts/navigation.ftl" as navbar>
 <@c.page "/static/main.css">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark main main-raised" style="margin: 0;">
+        <@navbar.nav user></@navbar.nav>
+    </nav>
+
     <div class="header_container" style="height: 478px;">
-        <div class="col-lg-4 top-right">
-            <@l.logout></@l.logout>
-        </div>
         <div class="header_mask">
-            <header class="container">
-                <div class="row">
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 col-md-offset-6 col-lg-offset-6">
-                        <div class="enter">
-                        </div>
-                    </div>
-                </div>
-            </header>
             <div class="container">
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-md-offset-2 col-lg-offset-2 search_wrap">

@@ -1,7 +1,9 @@
 package com.guideme.controller;
 
 import com.guideme.model.Excursion;
+import com.guideme.model.User;
 import com.guideme.service.ExcursionService;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,7 +23,9 @@ public class MainController {
 	}
 
 	@GetMapping("/main")
-	public String main(@RequestParam(required = false, defaultValue = "") String filter, Model model) {
+	public String main(@AuthenticationPrincipal User user,
+					   @RequestParam(required = false, defaultValue = "") String filter,
+					   Model model) {
 		Iterable<Excursion> excursions;
 		if (filter != null && !filter.isEmpty()) {
 			excursions = excursionService.findByCityLike(filter);
@@ -30,6 +34,7 @@ public class MainController {
 		}
 		model.addAttribute("excursionList", excursions);
 		model.addAttribute("filter", filter);
+		model.addAttribute("user", user);
 		return "main";
 	}
 
