@@ -1,7 +1,8 @@
 body {
     color: #fff;
-    background: #63738a;
+    /*background: #63738a;*/
     font-family: 'Roboto', sans-serif;
+    background-image: url('https://cdn.contexttravel.com/image/upload/c_fill,q_60,w_2600/v1549318570/production/city/hero_image_2_1549318566.jpg');
 }
 
 html, body {
@@ -11,7 +12,8 @@ html, body {
     padding: 0;
     overflow-x: hidden;
 }
-.form-control{
+
+.form-control {
     height: 40px;
     box-shadow: none;
     color: #969fa4;
@@ -51,6 +53,7 @@ html, body {
 .signup-form h2:before {
     left: 0;
 }
+
 .custom-file-label,
 .custom-file-label::after {
     height: initial;
