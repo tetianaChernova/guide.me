@@ -34,6 +34,8 @@ public class ExcursionService {
 		return excursionRepo.findAll();
 	}
 
+	public Excursion findByExcursionId(Long id){ return excursionRepo.findByExcursionId(id);}
+
 	public Iterable<Excursion> findByCityLike(String city) {
 		return excursionRepo.findByCityContainingIgnoreCase(city);
 	}
