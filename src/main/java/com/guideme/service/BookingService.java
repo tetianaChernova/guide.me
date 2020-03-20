@@ -6,6 +6,7 @@ import com.guideme.repos.BookingRepo;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Service
 public class BookingService {
@@ -27,5 +28,9 @@ public class BookingService {
 				.touristAmount(bookingDto.getPeopleAmount())
 				.build();
 		bookingRepo.save(booking);
+	}
+
+	public List<Booking> getByGuide(Long id){
+		return bookingRepo.findByExcursion_GuideGuideId(id);
 	}
 }
