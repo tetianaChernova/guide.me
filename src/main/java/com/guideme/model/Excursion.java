@@ -16,7 +16,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -56,4 +58,7 @@ public class Excursion {
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "guide_id", nullable = false)
 	private Guide guide;
+
+	@OneToMany(mappedBy = "excursion")
+	private Set<Booking> bookings;
 }

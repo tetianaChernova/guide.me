@@ -3,9 +3,11 @@ package com.guideme.controller;
 import com.guideme.dto.ExcursionDto;
 import com.guideme.model.Excursion;
 import com.guideme.model.Guide;
+import com.guideme.model.Tourist;
 import com.guideme.model.User;
 import com.guideme.service.ExcursionService;
 import com.guideme.service.GuideService;
+import com.guideme.service.TouristService;
 import com.guideme.utils.FileUploadUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -33,6 +35,8 @@ public class ExcursionController {
 	private ExcursionService excursionService;
 	@Resource
 	private GuideService guideService;
+	@Resource
+	private TouristService touristService;
 
 	@Value("${upload.path}")
 	private String uploadPath;
@@ -48,9 +52,11 @@ public class ExcursionController {
 							   Model model) {
 		Excursion foundExcursion = excursionService.findByExcursionId(excursionId);
 		Guide excursionGuide = foundExcursion.getGuide();
+		Tourist tourist = touristService.findByEmail(user.getEmail());
 		model.addAttribute("excursion", foundExcursion);
 		model.addAttribute("user", user);
 		model.addAttribute("guide", excursionGuide);
+		model.addAttribute("tourist", tourist);
 		return "excursionPage";
 	}
 

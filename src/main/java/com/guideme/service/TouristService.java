@@ -31,4 +31,12 @@ public class TouristService {
 		touristRepo.save(tourist);
 		return true;
 	}
+
+	public Tourist findByTouristId(Long id){
+		return touristRepo.findByTouristId(id);
+	}
+
+	public Tourist findByEmail(String email){
+		return touristRepo.findByEmail(email);
+	}
 }

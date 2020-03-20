@@ -11,6 +11,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -35,4 +37,7 @@ public class Tourist {
 	@Column(nullable = false)
 	private String nationality;
 	private String filename;
+
+	@OneToMany(mappedBy = "tourist")
+	private Set<Booking> bookings;
 }

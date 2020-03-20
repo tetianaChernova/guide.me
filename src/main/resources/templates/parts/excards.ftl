@@ -17,7 +17,7 @@
                             <a href="#" class="js-product-open" data-toggle="modal"
                                data-target="#exampleModal">${exc.title}</a>
                         </h4>
-                        <p class="card-text" style=" max-height: 500px; overflow-y: scroll">${exc.description}</p>
+                        <p class="card-text" style=" max-height: 200px; overflow-y: scroll">${exc.description}</p>
                     </div>
                 </div>
             </div>

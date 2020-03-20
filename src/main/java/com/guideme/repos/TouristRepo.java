@@ -6,5 +6,6 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 
 public interface TouristRepo extends CrudRepository<Tourist, Long> {
-	List<Tourist> findByEmail(String email);
+	Tourist findByEmail(String email);
+	Tourist findByTouristId(Long id);
 }

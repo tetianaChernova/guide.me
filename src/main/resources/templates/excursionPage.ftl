@@ -11,7 +11,7 @@
              style="background-image:url('https://media.timeout.com/images/105189172/image.jpg'); margin: 0"></div>
         <div class="main main-raised">
             <div class="profile-content">
-                <div class="container" style="width: 1200px; height: 650px; margin: -100px auto;">
+                <div class="container" style="width: 1200px; height: 600px; margin: -250px auto;">
                     <div id="img-wrap">
                         <ul class="images">
                             <li class="big-img">
@@ -35,7 +35,7 @@
                         <p style="max-height: 150px; overflow: scroll">${excursion.description}</p>
 
                         <div class="important1">
-                            <p id="importantp">Price
+                            <p id="importantp">Price for one
                             <p>
                             <h1 id="price">$ ${excursion.priceForOne}</h1>
                         </div>
@@ -54,7 +54,7 @@
                             <p>
                             <h1 id="meeting_point">${excursion.city}, ${excursion.meetingPoint}</h1>
                         </div>
-                        <button>Book this excursion</button>
+                        <button data-toggle="modal" data-target="#myModalAdd">Book this excursion</button>
 
                     </div>
                 </div>
@@ -66,30 +66,146 @@
                 by Creative Tim</p>
         </footer>
     </div>
+
+    <form action="/save" method="post" role="form" id="formfield" enctype="multipart/form-data">
+        <div class="modal fade" id="myModalAdd" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Book the excursion</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span style="float: right; margin-right: 1%;" aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <input type="text" id="amountInput" name="name" class="form-control"
+                                   placeholder="People amount"
+                                   required>
+                        </div>
+                        <div class="form-group">
+                            <div class='input-group date' id='datetimepicker1'>
+                                <input type='text'
+                                       name="birthDate"
+                                       class="form-control"
+                                       id="datePickerInput"
+                                       value="<#if booking??>${booking.bookingDate?datetime?string('dd/MM/yyyy')}</#if>"
+                                       required/>
+                                <span class="input-group-addon"><span
+                                            class="glyphicon glyphicon-calendar"></span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <input type="button" name="btn" value="Confirm" id="submitBtn"
+                               data-dismiss="modal" data-toggle="modal"
+                               data-target="#confirm-submit" class="btn btn-primary"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <div class="modal fade" id="confirm-submit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Are you sure you want to submit the following details?</h5>
+                </div>
+                <div class="modal-body">
+                    <table class="table">
+                        <tr>
+                            <th>People amount</th>
+                            <td id="mamount"></td>
+                        </tr>
+                        <tr>
+                            <th>Date of excursion</th>
+                            <td id="mdate"></td>
+                        </tr>
+                        <tr>
+                            <th>Total price</th>
+                            <td id="mprice"></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <form action="/booking" method="post">
+                        <input type="hidden" id="excursionId" name="excursionId" value="${excursion.excursionId}"/>
+                        <input type="hidden" id="touristId" name="touristId" value="${tourist.touristId}"/>
+                        <input type="hidden" id="peopleAmount" name="peopleAmount" value=""/>
+                        <input type="hidden" id="bookingDate" name="bookingDate" value=""/>
+                        <input type="hidden" id="totalPrice" name="totalPrice" value=""/>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        <input type="hidden" name="_csrf" value="${_csrf.token}"/>
+                        <button type="submit" class="btn btn-primary">Confirm</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </@c.page>
+
+<script>
+    $(function () {
+        $('#datetimepicker1').datetimepicker({
+            format: 'L'
+        });
+    });
+
+    $('#submitBtn').click(function () {
+        let peoplAmount = $('#amountInput').val();
+        let excursionDate = $('#datePickerInput').val();
+        let totalPrice = peoplAmount * ${excursion.priceForOne};
+        $('#mamount').text(peoplAmount);
+        $('#mdate').text(excursionDate);
+        $('#mprice').text(totalPrice);
+        $('#peopleAmount').val(peoplAmount);
+        $('#bookingDate').val(excursionDate);
+        $('#totalPrice').val(totalPrice);
+
+    });
+
+    $('#submit').click(function () {
+        alert('submitting');
+        $('#formfield').submit();
+    });
+
+</script>
 
 
 <style>
-    /*#img-wrap {*/
-    /*    !* width: 550px; *!*/
-    /*    width: 80%;*/
-    /*    margin-left: -300px;*/
-    /*    margin-top: -40px;*/
-    /*    height: 100%;*/
-    /*    float: left;*/
-    /*    position: relative;*/
-    /*}*/
-
     #img-wrap {
         /* width: 550px; */
-        width: 90%;
-        margin-left: -350px;
-        margin-top: -65px;
+        width: 75%;
+        margin-left: -170px;
+        margin-top: -40px;
         height: 100%;
         float: left;
         position: relative;
     }
 
+    /*#img-wrap {*/
+    /*    !* width: 550px; *!*/
+    /*    width: 90%;*/
+    /*    margin-left: -350px;*/
+    /*    margin-top: -65px;*/
+    /*    height: 100%;*/
+    /*    float: left;*/
+    /*    position: relative;*/
+    /*}*/
+
+
+    .modal-title {
+        overflow: auto;
+        white-space: nowrap;
+        /*width: 400px;*/
+        /*font-size: 150%;*/
+        width: 600px;
+        font-size: 130%;
+    }
 
     #img-wrap .images {
         width: 60%;
@@ -193,29 +309,29 @@
         margin-top: 15px;
     }
 
-    .form .color {
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        appearance: none;
-        padding: 0 20px;
-        width: 100%;
-        height: 40px;
-        border: none;
-        background: #F0C2C2;
-        font-size: 0.9em;
-        letter-spacing: 1px;
-        -webkit-border-radius: 5px;
-        -moz-border-radius: 5px;
-        -ms-border-radius: 5px;
-        border-radius: 5px;
-        color: #444B54;
-        cursor: pointer;
-        font-weight: 400;
-    }
+    /*.form .color {*/
+    /*    -webkit-appearance: none;*/
+    /*    -moz-appearance: none;*/
+    /*    appearance: none;*/
+    /*    padding: 0 20px;*/
+    /*    width: 100%;*/
+    /*    height: 40px;*/
+    /*    border: none;*/
+    /*    background: #F0C2C2;*/
+    /*    font-size: 0.9em;*/
+    /*    letter-spacing: 1px;*/
+    /*    -webkit-border-radius: 5px;*/
+    /*    -moz-border-radius: 5px;*/
+    /*    -ms-border-radius: 5px;*/
+    /*    border-radius: 5px;*/
+    /*    color: #444B54;*/
+    /*    cursor: pointer;*/
+    /*    font-weight: 400;*/
+    /*}*/
 
-    .form .color:hover {
-        background: #efb7b7;
-    }
+    /*.form .color:hover {*/
+    /*    background: #efb7b7;*/
+    /*}*/
 
     button {
         width: 100%;
