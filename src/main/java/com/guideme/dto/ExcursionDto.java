@@ -21,6 +21,7 @@ public class ExcursionDto extends FileConsistingDto {
 
 	private String title;
 	@Length(max = 2048, message = "Description is too long")
+	@Length(min = 500, message = "Description is too short, it must contains minimum 500 symbols")
 	private String description;
 	@Positive
 	private Integer amount;

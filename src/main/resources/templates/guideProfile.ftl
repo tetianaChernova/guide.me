@@ -68,7 +68,7 @@
                         </div>
                     </div>
                     <div class="tab-content tab-space" id="all-exc">
-                        <@excards.cards excursions=excursionList></@excards.cards>
+                        <@excards.cards excursions=excursionList isMainPage=false></@excards.cards>
                     </div>
                 </div>
             </div>

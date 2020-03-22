@@ -25,7 +25,7 @@
             </li>
              <#if user.role="GUIDE">
             <li class="nav-item">
-                <a class="navbar-brand disabled" href="#">Bookings</a>
+                <a class="navbar-brand disabled" href="/booking">Bookings</a>
             </li>
             </#if>
         </ul>

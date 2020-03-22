@@ -27,5 +27,5 @@
             </div>
         </div>
     </div>
-    <@excards.cards excursions=excursionList></@excards.cards>
+    <@excards.cards excursions=excursionList isMainPage=true></@excards.cards>
 </@c.page>
