@@ -28,7 +28,20 @@ public class GuideController {
 							   @PathVariable Long guideId, Model model) {
 		Guide foundedGuide = guideService.findByGuideId(guideId);
 		Iterable<Excursion> excursions;
-		excursions = excursionService.findByGuide(guideService.findByGuideId(guideId));
+		excursions = excursionService.findByGuide(foundedGuide);
+		model.addAttribute("excursionList", excursions);
+		model.addAttribute("guide", foundedGuide);
+		model.addAttribute("user", user);
+		return "guideProfile";
+	}
+
+	@GetMapping("/profile")
+	public String getGuideProfile(
+			@AuthenticationPrincipal User user,
+			Model model) {
+		Guide foundedGuide = guideService.findByEmail(user.getEmail());
+		Iterable<Excursion> excursions;
+		excursions = excursionService.findByGuide(foundedGuide);
 		model.addAttribute("excursionList", excursions);
 		model.addAttribute("guide", foundedGuide);
 		model.addAttribute("user", user);

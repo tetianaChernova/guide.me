@@ -6,9 +6,9 @@
             </li>
             <li class="nav-item">
                 <#if user.role="GUIDE">
-                    <a class="navbar-brand" href="#">Guide Profile</a>
+                    <a class="navbar-brand" href="/guide/profile">Guide Profile</a>
                 <#else>
-                    <a class="navbar-brand" href="#">Tourist Profile</a>
+                    <a class="navbar-brand" href="/tourist/profile">Tourist Profile</a>
                 </#if>
             </li>
             <li class="nav-item dropdown">

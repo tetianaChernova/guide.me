@@ -26,4 +26,14 @@ public class TouristController {
 		model.addAttribute("user", user);
 		return "touristProfile";
 	}
+
+	@GetMapping("/profile")
+	public String getTouristProfile(
+			@AuthenticationPrincipal User user,
+			Model model) {
+		Tourist foundedTourist = touristService.findByEmail(user.getEmail());
+		model.addAttribute("tourist", foundedTourist);
+		model.addAttribute("user", user);
+		return "touristProfile";
+	}
 }
