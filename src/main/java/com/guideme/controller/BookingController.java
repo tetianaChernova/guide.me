@@ -38,8 +38,12 @@ public class BookingController {
 			@AuthenticationPrincipal User user,
 			Model model) {
 		Guide foundGuide = guideService.findByEmail(user.getEmail());
-		List<Booking> bookingList = bookingService.getByGuide(foundGuide.getGuideId());
-		model.addAttribute("bookingList", bookingList);
+		List<Booking> notConfirmedBookings = bookingService.getGuideNotConfirmedBookings(foundGuide.getGuideId());
+		List<Booking> futureBookings = bookingService.getGuideFutureBookings(foundGuide.getGuideId());
+		List<Booking> pastBookings = bookingService.getGuidePastBookings(foundGuide.getGuideId());
+		model.addAttribute("futureBookings", futureBookings);
+		model.addAttribute("notConfirmedBookings", notConfirmedBookings);
+		model.addAttribute("pastBookings", pastBookings);
 		model.addAttribute("user", user);
 		return "bookingPage";
 	}

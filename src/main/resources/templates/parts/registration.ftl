@@ -5,7 +5,7 @@
         <form action="/registration/guide" method="post" enctype="multipart/form-data" class="md-form">
             </#if>
             <#if !isGuideRegistrationForm>
-            <form action="/registration/tourist" method="post">
+            <form action="/registration/tourist" method="post" enctype="multipart/form-data" class="md-form">
                 </#if>
                 <h2>Register</h2>
                 <p class="hint-text">Create your account. It's free and only takes few minutes.</p>

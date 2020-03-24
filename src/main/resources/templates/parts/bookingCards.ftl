@@ -36,7 +36,7 @@
                             </div>
                         </div>
                     </div>
-<#--                    <#if !book.isConfirmed>-->
+                    <#if !book.isConfirmed>
                     <div class="card-footer align-content-center" id="mytable">
                         <button
                                 type="button"
@@ -57,10 +57,10 @@
                                 data-target="#myModalConfirm">
                             Confirm booking
                         </button>
+                        </#if>
                     </div>
 
                 </div>
-<#--                </#if>-->
             </div>
         <#else>
             <div class="mx-auto" style="text-align: center;">No bookings are available</div>
@@ -78,11 +78,18 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body">
-                    </div>
+                    <textarea
+                            name="message"
+                            rows="3"
+                            class="rounded-0"
+                            form="confirmForm"
+                            value=""
+                            required="required">
+                        </textarea>
+                    <h5 style="color:green">Please, write the message that will gives the details about booking.<br />Provide the most convenient time period for the excursion. <br />This message will be sent to the tourist via email!</h5>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <form action="/booking" method="post">
+                        <form action="/booking/confirm" method="post" id="confirmForm">
                             <input type="hidden" name="bookingId" id="bookingId" value="">
                             <input type="hidden" name="_csrf" value="${_csrf.token}"/>
                             <button type="submit" id="confirmSubmit" class="btn btn-primary">Confirm</button>
@@ -104,9 +111,18 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
+                    <textarea
+                            name="message"
+                            rows="3"
+                            class="rounded-0"
+                            form="cancelForm"
+                            value=""
+                            required="required">
+                        </textarea>
+                    <p style="color:indianred">Please, write the message that will explain you cancellation.<br />This message will be sent to the tourist via email!</p>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <form action="/booking" method="post">
+                        <form action="/booking/cancel" method="post" id="cancelForm">
                             <input type="hidden" name="bookingId" id="bookingId" value="">
                             <input type="hidden" name="_csrf" value="${_csrf.token}"/>
                             <button type="submit" class="btn btn-primary">Confirm cancelation</button>

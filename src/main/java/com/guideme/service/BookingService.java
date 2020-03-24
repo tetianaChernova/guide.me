@@ -6,6 +6,7 @@ import com.guideme.repos.BookingRepo;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -30,7 +31,23 @@ public class BookingService {
 		bookingRepo.save(booking);
 	}
 
-	public List<Booking> getByGuide(Long id){
+	public List<Booking> getByGuide(Long id) {
 		return bookingRepo.findByExcursion_GuideGuideId(id);
+	}
+
+	public List<Booking> getGuideFutureBookings(Long id) {
+		return bookingRepo.findByExcursion_GuideGuideIdAndIsConfirmedIsTrueAndBookingDateGreaterThan(id, new Date());
+	}
+
+	public List<Booking> getGuidePastBookings(Long id) {
+		return bookingRepo.findByExcursion_GuideGuideIdAndIsConfirmedIsTrueAndBookingDateLessThan(id, new Date());
+	}
+
+	public List<Booking> getGuideNotConfirmedBookings(Long id) {
+		return bookingRepo.findByExcursion_GuideGuideIdAndIsConfirmedIsFalse(id);
+	}
+
+	public List<Booking> getGuideNotConfirmedFutureBookings(Long id) {
+		return bookingRepo.findByExcursion_GuideGuideIdAndIsConfirmedIsFalseAndBookingDateGreaterThan(id, new Date());
 	}
 }
