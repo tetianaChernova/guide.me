@@ -45,26 +45,24 @@
 </@c.page>
 <script>
 
-    // $('#myModalCancel').on('hidden.bs.modal', function (e) {
-    //     $(this)
-    //         .find("textarea")
-    //         // .find("input,textarea,select")
-    //         .val('')
-    //         .end()
-    //         // .find("input[type=checkbox], input[type=radio]")
-    //         .prop("checked", "")
-    //         .end();
-    // });
-    //
-    // $('#myModalConfirm').on('hidden.bs.modal', function (e) {
-    //     $(this)
-    //         .find("input,textarea,select")
-    //         .val('')
-    //         .end()
-    //         .find("input[type=checkbox], input[type=radio]")
-    //         .prop("checked", "")
-    //         .end();
-    // });
+    $('#myModalCancel').on('hidden.bs.modal', function (e) {
+        $(this)
+            .find("textarea")
+            .val('')
+            .end()
+            .prop("checked", "")
+            .end();
+    });
+
+    $('#myModalConfirm').on('hidden.bs.modal', function (e) {
+        $(this)
+            .find("textarea")
+            .val('')
+            .end()
+            .find("input[type=checkbox], input[type=radio]")
+            .prop("checked", "")
+            .end();
+    });
 
     $(function () {
         $('#notConfirmedLink').click(function () {
@@ -106,12 +104,16 @@
     });
     $(document).on("click", ".confirmBtn", function () {
         let myBookingId = $(this).data('id');
-        $('[name ="bookingId"]') .val(myBookingId);
+        let myTouristId = $(this).data('tourist');
+        $('[name ="bookingId"]').val(myBookingId);
+        $('[name ="touristId"]').val(myTouristId);
     });
 
     $(document).on("click", ".cancelBtn", function () {
         let myBookingId = $(this).data('id');
-        $('[name ="bookingId"]') .val(myBookingId);
+        let myTouristId = $(this).data('tourist');
+        $('[name ="bookingId"]').val(myBookingId);
+        $('[name ="touristId"]').val(myTouristId);
 
     });
 </script>

@@ -15,4 +15,5 @@ public class BookingResponseDto {
 
 	private String message;
 	private Long bookingId;
+	private Long touristId;
 }

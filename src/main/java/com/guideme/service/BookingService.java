@@ -2,8 +2,10 @@ package com.guideme.service;
 
 import com.guideme.dto.BookingDto;
 import com.guideme.model.Booking;
+import com.guideme.model.Tourist;
 import com.guideme.repos.BookingRepo;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.Date;
@@ -12,12 +14,16 @@ import java.util.List;
 @Service
 public class BookingService {
 
+	public static final String BOOKING = "Booking";
+	private static final String BOOKING_EMAIL = "Hello, %s %s\n %s";
 	@Resource
 	private BookingRepo bookingRepo;
 	@Resource
 	private ExcursionService excursionService;
 	@Resource
 	private TouristService touristService;
+	@Resource
+	private MailSender mailSender;
 
 	public void addBooking(BookingDto bookingDto) {
 		Booking booking = Booking.builder()
@@ -49,5 +55,25 @@ public class BookingService {
 
 	public List<Booking> getGuideNotConfirmedFutureBookings(Long id) {
 		return bookingRepo.findByExcursion_GuideGuideIdAndIsConfirmedIsFalseAndBookingDateGreaterThan(id, new Date());
+	}
+
+	@Transactional
+	public void confirmBooking(Tourist tourist, String messageDetails, Long id) {
+		bookingRepo.confirmBooking(id);
+		sendMessage(tourist, messageDetails);
+	}
+
+	public void cancelBooking(Tourist tourist, String messageDetails, Long id) {
+		Booking foundBooking = bookingRepo.findBookingByBookingId(id);
+		bookingRepo.delete(foundBooking);
+		sendMessage(tourist, messageDetails);
+	}
+
+	private void sendMessage(Tourist tourist, String messageDetails) {
+		String message = String.format(BOOKING_EMAIL,
+				tourist.getFirstName(),
+				tourist.getLastName(),
+				messageDetails);
+		mailSender.send(tourist.getEmail(), BOOKING, message);
 	}
 }

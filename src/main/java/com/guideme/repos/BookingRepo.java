@@ -5,12 +5,13 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
 
 public interface BookingRepo extends CrudRepository<Booking, Long> {
+
+	Booking findBookingByBookingId(Long id);
 
 	List<Booking> findByExcursion_GuideGuideId(Long id);
 

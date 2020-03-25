@@ -43,6 +43,7 @@
                                 class="btn btn-sm btn-danger cancelBtn"
                                 data-toggle="modal"
                                 data-id="${book.bookingId}"
+                                data-tourist="${book.tourist.touristId}"
                                 id="confirmBtn"
                                 value=""
                                 data-target="#myModalCancel">
@@ -54,6 +55,7 @@
                                 class="btn btn-sm btn-success pull-right confirmBtn"
                                 data-toggle="modal"
                                 data-id="${book.bookingId}"
+                                data-tourist="${book.tourist.touristId}"
                                 id="confirmBtn"
                                 value=""
                                 data-target="#myModalConfirm">
@@ -87,6 +89,7 @@
                                 class="form-control rounded-0"
                                 required></textarea>
                         <input type="hidden" class="form-control" name="bookingId" value="">
+                        <input type="hidden" class="form-control" name="touristId" value="">
                         <input type="hidden" class="form-control" name="_csrf" value="${_csrf.token}"/>
                     </form>
                 <h5 style="color:green">Please, write the message that will gives the details about booking.<br/>Provide
@@ -122,6 +125,7 @@
                                 class="form-control rounded-0"
                                 required></textarea>
                         <input type="hidden" name="bookingId" value="">
+                        <input type="hidden" class="form-control" name="touristId" value="">
                         <input type="hidden" name="_csrf" value="${_csrf.token}"/>
                     </form>
                     <p style="color:indianred">Please, write the message that will explain you cancellation.<br/>This
