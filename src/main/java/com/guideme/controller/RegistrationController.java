@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -103,5 +104,17 @@ public class RegistrationController {
 		}
 		guideService.addGuide(guide);
 		return "redirect:/login";
+	}
+
+	@GetMapping("/activate/{code}")
+	public String activate(Model model, @PathVariable String code){
+		boolean isActivated = userService.activateUser(code);
+		if (isActivated){
+			model.addAttribute("message", "User is successfully activated");
+		}
+		else{
+			model.addAttribute("message", "Activation code is not found");
+		}
+		return "login";
 	}
 }
