@@ -164,6 +164,11 @@
                     <button type="submit" class="btn btn-success btn-lg btn-block">Register Now</button>
                 </div>
                 <div class="text-center">Already have an account? <a href="/login">Sign in</a></div>
+                <#if isGuideRegistrationForm>
+                    <div class="text-center">Want to become a tourist? <a href="/registration/tourist">Create a tourist account</a></div>
+                <#else>
+                    <div class="text-center">Want to become a guide? <a href="/registration/guide">Create a guide account</a></div>
+                </#if>
             </form>
         </form>
     </div>

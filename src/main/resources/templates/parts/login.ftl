@@ -12,7 +12,10 @@
             <div class="form-group">
                 <button type="submit" class="btn btn-success btn-lg btn-block">Login</button>
             </div>
-            <div class="text-center">Don`t have an account? <a href="/registration/guide">Create account</a></div>
+            <div class="text-center">Don`t have an account?</div>
+            <div class="text-center">
+                <a style="margin-right: 10px;" href="/registration/tourist">Create tourist account</a>
+                <a style="margin-left: 10px;"href="/registration/guide">Create guide account</a></div>
         </form>
     </div>
 </#macro>
