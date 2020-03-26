@@ -1,6 +1,7 @@
 package com.guideme.service;
 
 import com.guideme.dto.GuideDto;
+import com.guideme.dto.ProfileEditDto;
 import com.guideme.model.Guide;
 import com.guideme.repos.GuideRepo;
 import org.springframework.stereotype.Service;
@@ -42,5 +43,17 @@ public class GuideService {
 
 	public Guide findByEmail(String email) {
 		return guideRepo.findByEmail(email);
+	}
+
+	public void updateGuide(ProfileEditDto profileEditDto, Guide guide) {
+		guide.setFirstName(profileEditDto.getFirstName());
+		guide.setLastName(profileEditDto.getLastName());
+		guide.setPhone(profileEditDto.getPhone());
+		guide.setCity(profileEditDto.getCity());
+		guide.setNationality(profileEditDto.getNationality());
+		guide.setDescription(profileEditDto.getDescription());
+		guide.setExperience(profileEditDto.getExperience());
+		guide.setFilename(profileEditDto.getFilename());
+		guideRepo.save(guide);
 	}
 }

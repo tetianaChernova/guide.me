@@ -17,16 +17,20 @@
                     Actions
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Change profile</a>
+                    <#if user.role="GUIDE">
+                        <a class="dropdown-item" href="/guide/profile/edit">Change profile</a>
+                    <#else>
+                        <a class="dropdown-item" href="/tourist/profile/edit">Change profile</a>
+                    </#if>
                     <#if user.role="GUIDE">
                         <a class="dropdown-item" href="/excursions">Create excursions</a>
                     </#if>
                 </div>
             </li>
-             <#if user.role="GUIDE">
-            <li class="nav-item">
-                <a class="navbar-brand disabled" href="/booking">Bookings</a>
-            </li>
+            <#if user.role="GUIDE">
+                <li class="nav-item">
+                    <a class="navbar-brand disabled" href="/booking">Bookings</a>
+                </li>
             </#if>
         </ul>
         <form action="/logout" method="post">
