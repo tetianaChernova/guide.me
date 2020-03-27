@@ -26,7 +26,6 @@ import java.io.IOException;
 import java.util.Map;
 
 import static java.util.Objects.isNull;
-import static org.springframework.util.StringUtils.isEmpty;
 
 @Controller
 @RequestMapping("/guide")
@@ -69,7 +68,7 @@ public class GuideController {
 		Guide guide = guideService.findByEmail(user.getEmail());
 		model.addAttribute("usr", guide);
 		model.addAttribute("user", user);
-		return "editProfile";
+		return "guideEditProfile";
 	}
 
 	@PostMapping("/profile/edit")

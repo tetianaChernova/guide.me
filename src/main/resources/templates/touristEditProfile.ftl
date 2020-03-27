@@ -5,5 +5,5 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark main main-raised" style="margin: 0;">
         <@navbar.nav user></@navbar.nav>
     </nav>
-    <@editprofile.editprofile usr></@editprofile.editprofile>
+    <@editprofile.editprofile usr false></@editprofile.editprofile>
 </@c.page>

@@ -42,11 +42,11 @@ public class BookingService {
 	}
 
 	public List<Booking> getGuideFutureBookings(Long id) {
-		return bookingRepo.findByExcursion_GuideGuideIdAndIsConfirmedIsTrueAndBookingDateGreaterThan(id, new Date());
+		return bookingRepo.findByExcursion_GuideGuideIdAndIsConfirmedIsTrueAndBookingDateIsGreaterThanEqual(id, new Date());
 	}
 
 	public List<Booking> getGuidePastBookings(Long id) {
-		return bookingRepo.findByExcursion_GuideGuideIdAndIsConfirmedIsTrueAndBookingDateLessThan(id, new Date());
+		return bookingRepo.findByExcursion_GuideGuideIdAndIsConfirmedIsTrueAndBookingDateIsLessThan(id, new Date());
 	}
 
 	public List<Booking> getGuideNotConfirmedBookings(Long id) {
@@ -54,7 +54,7 @@ public class BookingService {
 	}
 
 	public List<Booking> getGuideNotConfirmedFutureBookings(Long id) {
-		return bookingRepo.findByExcursion_GuideGuideIdAndIsConfirmedIsFalseAndBookingDateGreaterThan(id, new Date());
+		return bookingRepo.findByExcursion_GuideGuideIdAndIsConfirmedIsFalseAndBookingDateIsGreaterThanEqual(id, new Date());
 	}
 
 	@Transactional

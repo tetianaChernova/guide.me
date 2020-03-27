@@ -15,11 +15,11 @@ public interface BookingRepo extends CrudRepository<Booking, Long> {
 
 	List<Booking> findByExcursion_GuideGuideId(Long id);
 
-	List<Booking> findByExcursion_GuideGuideIdAndIsConfirmedIsTrueAndBookingDateGreaterThan(Long id, Date date);
+	List<Booking> findByExcursion_GuideGuideIdAndIsConfirmedIsTrueAndBookingDateIsGreaterThanEqual(Long id, Date date);
 
-	List<Booking> findByExcursion_GuideGuideIdAndIsConfirmedIsTrueAndBookingDateLessThan(Long id, Date date);
+	List<Booking> findByExcursion_GuideGuideIdAndIsConfirmedIsTrueAndBookingDateIsLessThan(Long id, Date date);
 
-	List<Booking> findByExcursion_GuideGuideIdAndIsConfirmedIsFalseAndBookingDateGreaterThan(Long id, Date date);
+	List<Booking> findByExcursion_GuideGuideIdAndIsConfirmedIsFalseAndBookingDateIsGreaterThanEqual(Long id, Date date);
 
 	List<Booking> findByExcursion_GuideGuideIdAndIsConfirmedIsFalse(Long id);
 

@@ -1,5 +1,6 @@
 package com.guideme.service;
 
+import com.guideme.dto.ProfileEditDto;
 import com.guideme.dto.TouristDto;
 import com.guideme.model.Tourist;
 import com.guideme.repos.TouristRepo;
@@ -38,5 +39,15 @@ public class TouristService {
 
 	public Tourist findByEmail(String email){
 		return touristRepo.findByEmail(email);
+	}
+
+	public void updateTourist(ProfileEditDto profileEditDto, Tourist tourist) {
+		tourist.setFirstName(profileEditDto.getFirstName());
+		tourist.setLastName(profileEditDto.getLastName());
+		tourist.setPhone(profileEditDto.getPhone());
+		tourist.setCity(profileEditDto.getCity());
+		tourist.setNationality(profileEditDto.getNationality());
+		tourist.setFilename(profileEditDto.getFilename());
+		touristRepo.save(tourist);
 	}
 }
