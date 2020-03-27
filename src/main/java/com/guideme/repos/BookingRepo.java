@@ -19,12 +19,16 @@ public interface BookingRepo extends CrudRepository<Booking, Long> {
 
 	List<Booking> findByExcursion_GuideGuideIdAndIsConfirmedIsTrueAndBookingDateIsLessThan(Long id, Date date);
 
-	List<Booking> findByExcursion_GuideGuideIdAndIsConfirmedIsFalseAndBookingDateIsGreaterThanEqual(Long id, Date date);
+	List<Booking> findByExcursion_GuideGuideIdAndIsConfirmedIsFalseAndIsCanceledIsFalseAndBookingDateIsGreaterThanEqual(Long id, Date date);
 
-	List<Booking> findByExcursion_GuideGuideIdAndIsConfirmedIsFalseAndBookingDateIsLessThan(Long id, Date date);
+	List<Booking> findByExcursion_GuideGuideIdAndIsConfirmedIsFalseAndIsCanceledIsFalseAndBookingDateIsLessThan(Long id, Date date);
 
 	@Modifying
 	@Query(value = "update Booking b set b.isConfirmed = true where b.bookingId = :id")
 	void confirmBooking(@Param("id") Long id);
+
+	@Modifying
+	@Query(value = "update Booking b set b.isCanceled = true where b.bookingId = :id")
+	void cancelBooking(@Param("id") Long id);
 
 }

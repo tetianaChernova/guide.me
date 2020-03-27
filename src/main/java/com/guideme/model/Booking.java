@@ -34,6 +34,7 @@ public class Booking {
 	private Date bookingDate;
 	@Column (nullable = false)
 	private Boolean isConfirmed;
+	private Boolean isCanceled;
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "excursion_id", nullable = false)

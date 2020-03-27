@@ -31,6 +31,7 @@ public class BookingService {
 				.tourist(touristService.findByTouristId(bookingDto.getTouristId()))
 				.bookingDate(bookingDto.getBookingDate())
 				.isConfirmed(false)
+				.isCanceled(false)
 				.totalPrice(bookingDto.getTotalPrice())
 				.touristAmount(bookingDto.getPeopleAmount())
 				.build();
@@ -50,11 +51,11 @@ public class BookingService {
 	}
 
 	public List<Booking> getGuideNotConfirmedBookings(Long id) {
-		return bookingRepo.findByExcursion_GuideGuideIdAndIsConfirmedIsFalseAndBookingDateIsGreaterThanEqual(id, new Date());
+		return bookingRepo.findByExcursion_GuideGuideIdAndIsConfirmedIsFalseAndIsCanceledIsFalseAndBookingDateIsGreaterThanEqual(id, new Date());
 	}
 
 	public List<Booking> getGuideExpiredBookings(Long id) {
-		return bookingRepo.findByExcursion_GuideGuideIdAndIsConfirmedIsFalseAndBookingDateIsLessThan(id, new Date());
+		return bookingRepo.findByExcursion_GuideGuideIdAndIsConfirmedIsFalseAndIsCanceledIsFalseAndBookingDateIsLessThan(id, new Date());
 	}
 
 	@Transactional
@@ -63,9 +64,9 @@ public class BookingService {
 		sendMessage(tourist, messageDetails);
 	}
 
+	@Transactional
 	public void cancelBooking(Tourist tourist, String messageDetails, Long id) {
-		Booking foundBooking = bookingRepo.findBookingByBookingId(id);
-		bookingRepo.delete(foundBooking);
+		bookingRepo.cancelBooking(id);
 		sendMessage(tourist, messageDetails);
 	}
 
