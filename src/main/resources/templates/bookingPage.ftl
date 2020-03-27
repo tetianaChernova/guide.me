@@ -28,18 +28,28 @@
                             Past
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#expired" id="expiredLink" role="tab"
+                           data-toggle="tab">
+                            <i class="material-icons">alarm_on</i>
+                            Expired
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
     </div>
     <div id="notConfirmed" style="display: initial;">
-        <@bcards.booking bookings=notConfirmedBookings></@bcards.booking>
+        <@bcards.booking bookings=notConfirmedBookings hasExpired=false></@bcards.booking>
     </div>
     <div id="future" style="display: none;">
-        <@bcards.booking bookings=futureBookings></@bcards.booking>
+        <@bcards.booking bookings=futureBookings hasExpired=false></@bcards.booking>
     </div>
     <div id="past" style="display: none;">
-        <@bcards.booking bookings=pastBookings></@bcards.booking>
+        <@bcards.booking bookings=pastBookings hasExpired=false></@bcards.booking>
+    </div>
+    <div id="expired" style="display: none;">
+        <@bcards.booking bookings=expiredBookings hasExpired=true></@bcards.booking>
     </div>
 
 </@c.page>
@@ -70,10 +80,12 @@
             let dataDivNotConfirmed = document.getElementById("notConfirmed");
             let dataDivFuture = document.getElementById("future");
             let dataDivPast = document.getElementById("past");
+            let dataDivExpired = document.getElementById("expired")
             if (dataDivNotConfirmed.style.display === "none") {
                 dataDivNotConfirmed.style.display = "initial";
                 dataDivFuture.style.display = "none";
                 dataDivPast.style.display = "none";
+                dataDivExpired.style.display = "none";
                 $(".show").removeClass('show');
             }
         });
@@ -82,10 +94,12 @@
             let dataDivNotConfirmed = document.getElementById("notConfirmed");
             let dataDivFuture = document.getElementById("future");
             let dataDivPast = document.getElementById("past");
+            let dataDivExpired = document.getElementById("expired")
             if (dataDivFuture.style.display === "none") {
                 dataDivNotConfirmed.style.display = "none";
                 dataDivFuture.style.display = "initial";
                 dataDivPast.style.display = "none";
+                dataDivExpired.style.display = "none";
                 $(".show").removeClass('show');
             }
         });
@@ -94,10 +108,26 @@
             let dataDivNotConfirmed = document.getElementById("notConfirmed");
             let dataDivFuture = document.getElementById("future");
             let dataDivPast = document.getElementById("past");
+            let dataDivExpired = document.getElementById("expired")
             if (dataDivPast.style.display === "none") {
                 dataDivNotConfirmed.style.display = "none";
                 dataDivFuture.style.display = "none";
                 dataDivPast.style.display = "initial";
+                dataDivExpired.style.display = "none";
+                $(".show").removeClass('show');
+            }
+        });
+        $('#expiredLink').click(function () {
+
+            let dataDivNotConfirmed = document.getElementById("notConfirmed");
+            let dataDivFuture = document.getElementById("future");
+            let dataDivPast = document.getElementById("past");
+            let dataDivExpired = document.getElementById("expired")
+            if (dataDivExpired.style.display === "none") {
+                dataDivNotConfirmed.style.display = "none";
+                dataDivFuture.style.display = "none";
+                dataDivPast.style.display = "none";
+                dataDivExpired.style.display = "initial";
                 $(".show").removeClass('show');
             }
         });

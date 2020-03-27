@@ -50,11 +50,11 @@ public class BookingService {
 	}
 
 	public List<Booking> getGuideNotConfirmedBookings(Long id) {
-		return bookingRepo.findByExcursion_GuideGuideIdAndIsConfirmedIsFalse(id);
+		return bookingRepo.findByExcursion_GuideGuideIdAndIsConfirmedIsFalseAndBookingDateIsGreaterThanEqual(id, new Date());
 	}
 
-	public List<Booking> getGuideNotConfirmedFutureBookings(Long id) {
-		return bookingRepo.findByExcursion_GuideGuideIdAndIsConfirmedIsFalseAndBookingDateIsGreaterThanEqual(id, new Date());
+	public List<Booking> getGuideExpiredBookings(Long id) {
+		return bookingRepo.findByExcursion_GuideGuideIdAndIsConfirmedIsFalseAndBookingDateIsLessThan(id, new Date());
 	}
 
 	@Transactional
@@ -76,4 +76,5 @@ public class BookingService {
 				messageDetails);
 		mailSender.send(tourist.getEmail(), BOOKING, message);
 	}
+
 }

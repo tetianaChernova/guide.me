@@ -21,7 +21,7 @@ public interface BookingRepo extends CrudRepository<Booking, Long> {
 
 	List<Booking> findByExcursion_GuideGuideIdAndIsConfirmedIsFalseAndBookingDateIsGreaterThanEqual(Long id, Date date);
 
-	List<Booking> findByExcursion_GuideGuideIdAndIsConfirmedIsFalse(Long id);
+	List<Booking> findByExcursion_GuideGuideIdAndIsConfirmedIsFalseAndBookingDateIsLessThan(Long id, Date date);
 
 	@Modifying
 	@Query(value = "update Booking b set b.isConfirmed = true where b.bookingId = :id")

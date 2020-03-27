@@ -46,9 +46,11 @@ public class BookingController {
 		List<Booking> notConfirmedBookings = bookingService.getGuideNotConfirmedBookings(foundGuide.getGuideId());
 		List<Booking> futureBookings = bookingService.getGuideFutureBookings(foundGuide.getGuideId());
 		List<Booking> pastBookings = bookingService.getGuidePastBookings(foundGuide.getGuideId());
+		List<Booking> expiredBookings = bookingService.getGuideExpiredBookings(foundGuide.getGuideId());
 		model.addAttribute("futureBookings", futureBookings);
 		model.addAttribute("notConfirmedBookings", notConfirmedBookings);
 		model.addAttribute("pastBookings", pastBookings);
+		model.addAttribute("expiredBookings", expiredBookings);
 		model.addAttribute("user", user);
 		return "bookingPage";
 	}

@@ -1,4 +1,4 @@
-<#macro booking bookings>
+<#macro booking bookings hasExpired>
     <div class="card-deck" style="margin-top: 30px;" id="cardDeck">
         <#list bookings as book>
             <div class="col-sm-4 mb-5">
@@ -36,33 +36,42 @@
                             </div>
                         </div>
                     </div>
-                    <#if !book.isConfirmed>
-                    <div class="card-footer align-content-center" id="mytable">
-                        <button
-                                type="button"
-                                class="btn btn-sm btn-danger cancelBtn"
-                                data-toggle="modal"
-                                data-id="${book.bookingId}"
-                                data-tourist="${book.tourist.touristId}"
-                                id="confirmBtn"
-                                value=""
-                                data-target="#myModalCancel">
-                            Cancel booking
-                        </button>
+                    <#if !book.isConfirmed && !hasExpired>
+                        <div class="card-footer align-content-center" id="mytable">
+                            <button
+                                    type="button"
+                                    class="btn btn-sm btn-danger cancelBtn"
+                                    data-toggle="modal"
+                                    data-id="${book.bookingId}"
+                                    data-tourist="${book.tourist.touristId}"
+                                    id="confirmBtn"
+                                    value=""
+                                    data-target="#myModalCancel">
+                                Cancel booking
+                            </button>
 
-                        <button
-                                type="button"
-                                class="btn btn-sm btn-success pull-right confirmBtn"
-                                data-toggle="modal"
-                                data-id="${book.bookingId}"
-                                data-tourist="${book.tourist.touristId}"
-                                id="confirmBtn"
-                                value=""
-                                data-target="#myModalConfirm">
-                            Confirm booking
-                        </button>
-                        </#if>
-                    </div>
+                            <button
+                                    type="button"
+                                    class="btn btn-sm btn-success pull-right confirmBtn"
+                                    data-toggle="modal"
+                                    data-id="${book.bookingId}"
+                                    data-tourist="${book.tourist.touristId}"
+                                    id="confirmBtn"
+                                    value=""
+                                    data-target="#myModalConfirm">
+                                Confirm booking
+                            </button>
+                        </div>
+                    </#if>
+                    <#if hasExpired>
+                        <div class="card-footer align-content-center" id="mytable">
+                            <div class="alert alert-warning alert-dismissable">
+<#--                                <a class="panel-close close" data-dismiss="alert">×</a>-->
+                                <i class="fa fa-coffee"></i>
+                                This booking has expired
+                            </div>
+                        </div>
+                    </#if>
 
                 </div>
             </div>
@@ -92,9 +101,10 @@
                         <input type="hidden" class="form-control" name="touristId" value="">
                         <input type="hidden" class="form-control" name="_csrf" value="${_csrf.token}"/>
                     </form>
-                <h5 style="color:green">Please, write the message that will gives the details about booking.<br/>Provide
-                    the most convenient time period for the excursion. <br/>This message will be sent to the tourist via
-                    email!</h5>
+                    <h5 style="color:green">Please, write the message that will gives the details about booking.<br/>Provide
+                        the most convenient time period for the excursion. <br/>This message will be sent to the tourist
+                        via
+                        email!</h5>
                 </div>
 
                 <div class="modal-footer">
