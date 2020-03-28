@@ -13,15 +13,15 @@
             <div class="profile-content">
                 <div class="container" style="width: 1200px; height: 600px; margin: -250px auto;">
                     <div id="img-wrap">
-                        <ul class="images">
-                            <li class="big-img">
-
-                                <img src="https://db82kmzzne7f2.cloudfront.net/ghost-blog/2015/08/AdobeStock_76271180.jpg"/>
-                            </li>
-                        </ul>
+                                <#if excursion??>
+                                    <#if excursion.filename??>
+                                        <img class="excImg" src="/img/${excursion.filename}"/>
+                                    <#else>
+                                        <img class="excImg" src="https://steemitimages.com/p/32FTXiZsHoAW6noHJDhrg3W8ZKHVFSsLYM859aTDCF8iErWLTod5pCiMV5bGfYDUfQ6W8cM5zcDSRt2Bfrc7VwhBaykTtn3QfRYLLJPu9bEiqLo882UTBrvVQxPoaQv8iHpiQGze98tp2rpe?format=match&mode=fit&width=1280"/>
+                                    </#if>
+                                </#if>
                     </div>
                     <div class="info">
-
                         <h1>${excursion.title}</h1>
                         <h2 class="avatar_title">Guide: ${guide.firstName} ${guide.lastName}</h2>
                         <#if guide??>
@@ -30,7 +30,7 @@
                                     <img src="/img/${guide.filename}" alt="Avatar" class="avatar rounded-circle">
                                 </a>
                             <#else>
-                                <a href="/guide/${exc.guide.guideId}">
+                                <a href="/guide/${guide.guideId}">
                                     <img src="https://f0.pngfuel.com/png/980/886/male-portrait-avatar-png-clip-art.png"
                                          alt="Avatar" class="avatar rounded-circle"></a>
                             </#if>
@@ -186,79 +186,28 @@
 
 
 <style>
-    #img-wrap {
-        /* width: 550px; */
-        width: 75%;
-        margin-left: -170px;
-        margin-top: -40px;
-        height: 100%;
+
+    #img-wrap{
+        width: 65%;
+        height: 82%;
         float: left;
-        position: relative;
+        overflow: auto;
+        margin: 6% 0 0 -100px;
     }
 
-    /*#img-wrap {*/
-    /*    !* width: 550px; *!*/
-    /*    width: 90%;*/
-    /*    margin-left: -350px;*/
-    /*    margin-top: -65px;*/
-    /*    height: 100%;*/
-    /*    float: left;*/
-    /*    position: relative;*/
-    /*}*/
-
+    .excImg{
+        max-width: 100%;
+        max-height: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+    }
 
     .modal-title {
         overflow: auto;
         white-space: nowrap;
-        /*width: 400px;*/
-        /*font-size: 150%;*/
         width: 600px;
         font-size: 130%;
-    }
-
-    #img-wrap .images {
-        width: 60%;
-        overflow: hidden;
-        margin: 270px auto 0 auto;
-    }
-
-    #img-wrap .images li {
-        list-style: none;
-        width: 33.33%;
-        float: left;
-        padding: 10px;
-        text-align: center;
-        cursor: pointer;
-        opacity: 0.7;
-    }
-
-    #img-wrap .images li img {
-        width: 80%;
-    }
-
-    #img-wrap .images li:nth-child(4) {
-        padding-top: 25px;
-    }
-
-    #img-wrap .images li:hover {
-        opacity: 1;
-    }
-
-    #img-wrap .images .big-img {
-        width: 100%;
-        float: none;
-        padding: 0;
-        /*margin: 0 12.5%;*/
-        text-align: center;
-        opacity: 1;
-        position: absolute;
-        top: 100px;
-        left: 0;
-    }
-
-    #img-wrap .images .big-img img {
-        -webkit-filter: drop-shadow(0px 7px 3px #6C7A89);
-        filter: drop-shadow(0px 7px 3px #6C7A89);
     }
 
     .info {
@@ -298,7 +247,6 @@
         text-transform: uppercase;
         letter-spacing: 1px;
         font-size: 0.9em;
-        /*color: #D64541;*/
     }
 
     .info #price, #amount, #meeting_point, #duration {
@@ -317,30 +265,6 @@
         float: right;
         margin-top: 15px;
     }
-
-    /*.form .color {*/
-    /*    -webkit-appearance: none;*/
-    /*    -moz-appearance: none;*/
-    /*    appearance: none;*/
-    /*    padding: 0 20px;*/
-    /*    width: 100%;*/
-    /*    height: 40px;*/
-    /*    border: none;*/
-    /*    background: #F0C2C2;*/
-    /*    font-size: 0.9em;*/
-    /*    letter-spacing: 1px;*/
-    /*    -webkit-border-radius: 5px;*/
-    /*    -moz-border-radius: 5px;*/
-    /*    -ms-border-radius: 5px;*/
-    /*    border-radius: 5px;*/
-    /*    color: #444B54;*/
-    /*    cursor: pointer;*/
-    /*    font-weight: 400;*/
-    /*}*/
-
-    /*.form .color:hover {*/
-    /*    background: #efb7b7;*/
-    /*}*/
 
     button {
         width: 100%;
