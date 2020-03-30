@@ -15,7 +15,9 @@ import java.util.List;
 public class BookingService {
 
 	public static final String BOOKING = "Booking";
-	private static final String BOOKING_EMAIL = "Hello, %s %s\n %s";
+	private static final String BOOKING_EMAIL = "Hello, %s %s\n%s";
+	public static final String CREATING_BOOKING_MESSAGE_DETAILS = "Thank you for choosing this excursion!\n" +
+			"The guide will send you further information after processing your booking";
 	@Resource
 	private BookingRepo bookingRepo;
 	@Resource
@@ -35,6 +37,7 @@ public class BookingService {
 				.totalPrice(bookingDto.getTotalPrice())
 				.touristAmount(bookingDto.getPeopleAmount())
 				.build();
+		sendMessage(booking.getTourist(), CREATING_BOOKING_MESSAGE_DETAILS);
 		bookingRepo.save(booking);
 	}
 

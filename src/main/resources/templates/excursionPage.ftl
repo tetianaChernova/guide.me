@@ -112,23 +112,17 @@
                         <input type="hidden" name="_csrf" value="${_csrf.token}"/>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <input class="btn btn-primary" type="submit" value="Confirm">
+                            <input class="btn btn-primary" type="submit" id="submit_button" value="Confirm">
                         </div>
                     </div>
                 </div>
             </div>
         </form>
 
-        <div class="modal hide" id="myModal" data-backdrop="false">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-body">
-
-                        ... Modal Window Content..
-
-                    </div>
-                </div>
-            </div>
+        <div class="alert alert-success collapse" role="alert" id="successAlert">
+  <span>
+  <p>Thank`s for book this excursion!</p>
+  </span>
         </div>
     </#if>
 </@c.page>
@@ -152,17 +146,18 @@
             let peoplAmount = $('#amountInput').val();
             let totalPrice = peoplAmount * ${excursion.priceForOne};
             $('#totalPrice').val(totalPrice);
+            alert("Thank's for book this excursion! You will receive further information via email!")
             form.submit();
-            $("#myModal").modal("show");
-            // $.ajax({
-            //     url: $(form).action,
-            //     method: $(form).method,
-            //     data: $(form).serialize(),
-            //     success: function() {
-            //         $("#myModal").modal("show");
-            //     }
-            // })
         }
+
+    });
+
+    $('#myModal').on('shown.bs.modal', function (e) {
+        // do something...
+        setTimeout(function () {
+                $('#myModal').modal('hide');
+            },
+            5000);
     });
 
     $(function () {

@@ -18,7 +18,7 @@
                                     <#if tourist??>
                                         <#if tourist.filename??>
                                             <img src="/img/${tourist.filename}" alt="Circle Image"
-                                                 class="img-raised rounded-circle img-fluid">
+                                                 class="img-raised rounded-circle img-fluid" style="width: 140px;height: 140px;">
                                         <#else>
                                             <img src="https://f0.pngfuel.com/png/980/886/male-portrait-avatar-png-clip-art.png"
                                                  alt="Circle Image" class="img-raised rounded-circle img-fluid">
