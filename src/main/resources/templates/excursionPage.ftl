@@ -13,13 +13,14 @@
             <div class="profile-content">
                 <div class="container" style="width: 1200px; height: 600px; margin: -250px auto;">
                     <div id="img-wrap">
-                                <#if excursion??>
-                                    <#if excursion.filename??>
-                                        <img class="excImg" src="/img/${excursion.filename}"/>
-                                    <#else>
-                                        <img class="excImg" src="https://steemitimages.com/p/32FTXiZsHoAW6noHJDhrg3W8ZKHVFSsLYM859aTDCF8iErWLTod5pCiMV5bGfYDUfQ6W8cM5zcDSRt2Bfrc7VwhBaykTtn3QfRYLLJPu9bEiqLo882UTBrvVQxPoaQv8iHpiQGze98tp2rpe?format=match&mode=fit&width=1280"/>
-                                    </#if>
-                                </#if>
+                        <#if excursion??>
+                            <#if excursion.filename??>
+                                <img class="excImg" src="/img/${excursion.filename}"/>
+                            <#else>
+                                <img class="excImg"
+                                     src="https://steemitimages.com/p/32FTXiZsHoAW6noHJDhrg3W8ZKHVFSsLYM859aTDCF8iErWLTod5pCiMV5bGfYDUfQ6W8cM5zcDSRt2Bfrc7VwhBaykTtn3QfRYLLJPu9bEiqLo882UTBrvVQxPoaQv8iHpiQGze98tp2rpe?format=match&mode=fit&width=1280"/>
+                            </#if>
+                        </#if>
                     </div>
                     <div class="info">
                         <h1>${excursion.title}</h1>
@@ -74,7 +75,7 @@
         </footer>
     </div>
     <#if tourist??>
-        <form action="/save" method="post" role="form" id="formfield" enctype="multipart/form-data">
+        <form action="/booking" method="post" role="form" id="formfield" enctype="multipart/form-data">
             <div class="modal fade" id="myModalAdd" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                  aria-hidden="true">
                 <div class="modal-dialog modal-lg" role="document">
@@ -87,14 +88,14 @@
                         </div>
                         <div class="modal-body">
                             <div class="form-group">
-                                <input type="text" id="amountInput" name="name" class="form-control"
+                                <input type="text" id="amountInput" name="peopleAmount" class="form-control"
                                        placeholder="People amount"
                                        required>
                             </div>
                             <div class="form-group">
                                 <div class='input-group date' id='datetimepicker1'>
                                     <input type='text'
-                                           name="birthDate"
+                                           name="bookingDate"
                                            class="form-control"
                                            id="datePickerInput"
                                            value="<#if booking??>${booking.bookingDate?datetime?string('dd/MM/yyyy')}</#if>"
@@ -104,52 +105,27 @@
                                 </div>
                             </div>
                         </div>
+                        <input type="hidden" id="excursionId" name="excursionId" value="${excursion.excursionId}"/>
+                        <input type="hidden" id="touristId" name="touristId"
+                               value="<#if tourist??>${tourist.touristId}</#if>"/>
+                        <input type="hidden" id="totalPrice" name="totalPrice" value=""/>
+                        <input type="hidden" name="_csrf" value="${_csrf.token}"/>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <input type="button" name="btn" value="Confirm" id="submitBtn"
-                                   data-dismiss="modal" data-toggle="modal"
-                                   data-target="#confirm-submit" class="btn btn-primary"/>
+                            <input class="btn btn-primary" type="submit" value="Confirm">
                         </div>
                     </div>
                 </div>
             </div>
         </form>
 
-        <div class="modal fade" id="confirm-submit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-             aria-hidden="true">
+        <div class="modal hide" id="myModal" data-backdrop="false">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Are you sure you want to submit the following details?</h5>
-                    </div>
                     <div class="modal-body">
-                        <table class="table">
-                            <tr>
-                                <th>People amount</th>
-                                <td id="mamount"></td>
-                            </tr>
-                            <tr>
-                                <th>Date of excursion</th>
-                                <td id="mdate"></td>
-                            </tr>
-                            <tr>
-                                <th>Total price</th>
-                                <td id="mprice"></td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div class="modal-footer">
-                        <form action="/booking" method="post">
-                            <input type="hidden" id="excursionId" name="excursionId" value="${excursion.excursionId}"/>
-                            <input type="hidden" id="touristId" name="touristId"
-                                   value="<#if tourist??>${tourist.touristId}</#if>"/>
-                            <input type="hidden" id="peopleAmount" name="peopleAmount" value=""/>
-                            <input type="hidden" id="bookingDate" name="bookingDate" value=""/>
-                            <input type="hidden" id="totalPrice" name="totalPrice" value=""/>
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                            <input type="hidden" name="_csrf" value="${_csrf.token}"/>
-                            <button type="submit" class="btn btn-primary">Confirm</button>
-                        </form>
+
+                        ... Modal Window Content..
+
                     </div>
                 </div>
             </div>
@@ -158,36 +134,54 @@
 </@c.page>
 
 <script>
+
+    $("#formfield").validate({
+        rules: {
+            amountInput: "required",
+            datepickerInput: {
+                required: true
+            },
+        },
+        messages: {
+            amountInput: "Please enter people amount",
+            datepickerInput: {
+                required: "Please enter booking date"
+            }
+        },
+        submitHandler: function (form) {
+            let peoplAmount = $('#amountInput').val();
+            let totalPrice = peoplAmount * ${excursion.priceForOne};
+            $('#totalPrice').val(totalPrice);
+            form.submit();
+            $("#myModal").modal("show");
+            // $.ajax({
+            //     url: $(form).action,
+            //     method: $(form).method,
+            //     data: $(form).serialize(),
+            //     success: function() {
+            //         $("#myModal").modal("show");
+            //     }
+            // })
+        }
+    });
+
     $(function () {
         $('#datetimepicker1').datetimepicker({
-            format: 'L'
+            format: 'L',
+            minDate: new Date()
         });
     });
 
-    $('#submitBtn').click(function () {
-        let peoplAmount = $('#amountInput').val();
-        let excursionDate = $('#datePickerInput').val();
-        let totalPrice = peoplAmount * ${excursion.priceForOne};
-        $('#mamount').text(peoplAmount);
-        $('#mdate').text(excursionDate);
-        $('#mprice').text(totalPrice);
-        $('#peopleAmount').val(peoplAmount);
-        $('#bookingDate').val(excursionDate);
-        $('#totalPrice').val(totalPrice);
-
+    $('#myModalAdd').on('hidden.bs.modal', function (e) {
+        $('#datePickerInput').val('');
+        $('#amountInput').val('');
     });
-
-    $('#submit').click(function () {
-        alert('submitting');
-        $('#formfield').submit();
-    });
-
 </script>
 
 
 <style>
 
-    #img-wrap{
+    #img-wrap {
         width: 65%;
         height: 82%;
         float: left;
@@ -195,7 +189,7 @@
         margin: 6% 0 0 -100px;
     }
 
-    .excImg{
+    .excImg {
         max-width: 100%;
         max-height: 100%;
         margin-left: auto;
