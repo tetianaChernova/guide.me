@@ -61,9 +61,11 @@
                         <#if tourist??>
                             <button data-toggle="modal" data-target="#myModalAdd">Book this excursion</button>
                         <#else>
-                            <button data-toggle="modal" data-target="#myModalEdit">Edit this excursion</button>
+                            <form action="/excursions/${excursion.excursionId}/edit">
+                                <button type="submit">Edit this excursion</button>
+                            </form>
+<#--                            <button >Edit this excursion</button>-->
                         </#if>
-
                     </div>
                 </div>
             </div>

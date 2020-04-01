@@ -26,6 +26,9 @@ import javax.annotation.Resource;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.util.Map;
+import java.util.Objects;
+
+import static java.util.Objects.isNull;
 
 @Controller
 @RequestMapping("/excursions")
@@ -79,6 +82,43 @@ public class ExcursionController {
 		}
 		Long id = excursionDto.getGuide().getGuideId();
 		return "redirect:/guide/" + id;
+	}
+
+	@PostMapping("/{excursionId}/edit")
+	public String editExcursion(
+			@AuthenticationPrincipal User user,
+			@PathVariable Long excursionId,
+			@RequestParam("file") MultipartFile file,
+			ExcursionDto excursionDto,
+			BindingResult bindingResult,
+			Model model) throws IOException {
+		Excursion foundExcursion = excursionService.findByExcursionId(excursionId);
+		if (!isNull(file) && !Objects.requireNonNull(file.getOriginalFilename()).isEmpty()) {
+			FileUploadUtils.setUploadedFile(file, excursionDto, uploadPath);
+		} else {
+			excursionDto.setFilename(foundExcursion.getFilename());
+		}
+
+		if (bindingResult.hasErrors()) {
+			Map<String, String> errorsMap = ControllerUtils.getErrors(bindingResult);
+			model.mergeAttributes(errorsMap);
+			return editExcursion(user, excursionId, model);
+		}
+		excursionService.updateExcursion(excursionDto, foundExcursion);
+		return "redirect:/excursions/" + excursionId;
+	}
+
+	@GetMapping("/{excursionId}/edit")
+	public String editExcursion(
+			@AuthenticationPrincipal User user,
+			@PathVariable Long excursionId,
+			Model model) {
+		Excursion foundExcursion = excursionService.findByExcursionId(excursionId);
+		Guide foundGuide = foundExcursion.getGuide();
+		model.addAttribute("user", user);
+		model.addAttribute("guide", foundGuide);
+		model.addAttribute("excursion", foundExcursion);
+		return "editExcursion";
 	}
 
 

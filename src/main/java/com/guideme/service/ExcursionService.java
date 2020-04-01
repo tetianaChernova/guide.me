@@ -43,4 +43,20 @@ public class ExcursionService {
 	public List<Excursion> findByGuide(Guide guide) {
 		return excursionRepo.findByGuide(guide);
 	}
+
+	public void updateExcursion(ExcursionDto excursionDto, Excursion excursionFound) {
+		Excursion excursion = Excursion.builder()
+				.excursionId(excursionFound.getExcursionId())
+				.title(excursionDto.getTitle())
+				.guide(excursionFound.getGuide())
+				.description(excursionDto.getDescription())
+				.amount(excursionDto.getAmount())
+				.city(excursionDto.getCity())
+				.priceForOne(excursionDto.getPrice())
+				.duration(excursionDto.getDurationHours() * 60 + excursionDto.getDurationMinutes())
+				.filename(excursionDto.getFilename())
+				.meetingPoint(excursionDto.getMeetingPoint())
+				.build();
+		excursionRepo.save(excursion);
+	}
 }
