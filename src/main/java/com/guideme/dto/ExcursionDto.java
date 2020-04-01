@@ -25,11 +25,9 @@ public class ExcursionDto extends FileConsistingDto {
 	private String description;
 	@Positive
 	private Integer amount;
-	@Positive
 	@Min(value = 0, message = "Duration hours should not be less than 0 hours")
 	@Max(value = 24, message = "Duration hours should not be greater than 24 hours")
 	private Integer durationHours;
-	@Positive
 	@Min(value = 0, message = "Duration minutes should not be less than 0")
 	@Max(value = 60, message = "Duration minutes should not be greater than 60")
 	private Integer durationMinutes;

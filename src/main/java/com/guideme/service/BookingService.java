@@ -8,7 +8,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 @Service
@@ -54,7 +58,7 @@ public class BookingService {
 	}
 
 	public List<Booking> getGuideNotConfirmedBookings(Long id) {
-		return bookingRepo.findByExcursion_GuideGuideIdAndIsConfirmedIsFalseAndIsCanceledIsFalseAndBookingDateIsGreaterThanEqual(id, new Date());
+		return bookingRepo.findByExcursion_GuideGuideIdAndIsConfirmedIsFalseAndIsCanceledIsFalseAndBookingDateIsGreaterThanEqual(id, removeTime(new Date()));
 	}
 
 	public List<Booking> getGuideExpiredBookings(Long id) {
@@ -79,6 +83,16 @@ public class BookingService {
 				tourist.getLastName(),
 				messageDetails);
 		mailSender.send(tourist.getEmail(), BOOKING, message);
+	}
+
+	private Date removeTime(Date date) {
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(date);
+		cal.set(Calendar.HOUR_OF_DAY, 0);
+		cal.set(Calendar.MINUTE, 0);
+		cal.set(Calendar.SECOND, 0);
+		cal.set(Calendar.MILLISECOND, 0);
+		return cal.getTime();
 	}
 
 }

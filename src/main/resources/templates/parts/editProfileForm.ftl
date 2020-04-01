@@ -4,7 +4,6 @@
         <h1>Edit Profile</h1>
         <hr>
         <div class="row">
-            <!-- left column -->
             <div class="col-md-3">
                 <div class="text-center">
                     <#if usr.filename??>
@@ -24,7 +23,6 @@
                     <input id="imgInput"
                            type="file"
                            name="file"
-                            <#--                           value="${usr.filename}"-->
                            form="editForm"
                            class="form-control">
                 </div>
@@ -129,11 +127,8 @@
                             <div class="col-md-8">
                                 <input type="submit" class="btn btn-primary" value="Save Changes"></input>
                                 <span></span>
-                                <#--                            <input type="reset" class="btn btn-default" value="Cancel">-->
                                 <form action="/guide/profile">
                                     <input type="submit" class="btn btn-default" value="Cancel">
-
-                                    <#--                                <input type="submit" value="Go to Google"/>-->
                                 </form>
                             </div>
                         </div>
@@ -142,7 +137,11 @@
             </div>
         </div>
     </div>
-
+    <style>
+        .row:before, .row:after {
+            display: none !important;
+        }
+    </style>
     <script>
         function updateTextInput(value) {
             console.log("value is: ", value);
@@ -153,10 +152,6 @@
             $('#datetimepicker1').datetimepicker({
                 format: 'L'
             });
-            <#--$("#imgInput").val(${usr.filename});-->
-
-            <#--$(".selectDiv").val("${usr.gender}").change();-->
-            <#--$(`.selectDiv option[value=${usr.gender}]`).attr('selected','selected');-->
         });
 
         function readURL(input) {
