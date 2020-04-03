@@ -29,6 +29,7 @@ import java.util.Map;
 import java.util.Objects;
 
 import static java.util.Objects.isNull;
+import static java.util.Objects.nonNull;
 
 @Controller
 @RequestMapping("/excursions")
@@ -54,8 +55,12 @@ public class ExcursionController {
 							   @PathVariable Long excursionId,
 							   Model model) {
 		Excursion foundExcursion = excursionService.findByExcursionId(excursionId);
+		Guide currentGuide = guideService.findByEmail(user.getEmail());
 		Guide excursionGuide = foundExcursion.getGuide();
 		Tourist tourist = touristService.findByEmail(user.getEmail());
+		if (nonNull(currentGuide)) {
+			model.addAttribute("currentGuide", currentGuide);
+		}
 		model.addAttribute("excursion", foundExcursion);
 		model.addAttribute("user", user);
 		model.addAttribute("guide", excursionGuide);
@@ -89,7 +94,7 @@ public class ExcursionController {
 			@AuthenticationPrincipal User user,
 			@PathVariable Long excursionId,
 			@RequestParam("file") MultipartFile file,
-			ExcursionDto excursionDto,
+			@Valid ExcursionDto excursionDto,
 			BindingResult bindingResult,
 			Model model) throws IOException {
 		Excursion foundExcursion = excursionService.findByExcursionId(excursionId);
@@ -102,6 +107,7 @@ public class ExcursionController {
 		if (bindingResult.hasErrors()) {
 			Map<String, String> errorsMap = ControllerUtils.getErrors(bindingResult);
 			model.mergeAttributes(errorsMap);
+			model.addAttribute("errorMessage", "error");
 			return editExcursion(user, excursionId, model);
 		}
 		excursionService.updateExcursion(excursionDto, foundExcursion);
@@ -121,5 +127,12 @@ public class ExcursionController {
 		return "editExcursion";
 	}
 
+	@PostMapping("/{id}/delete")
+	public String deleteExcursion(@PathVariable Long id,
+								  @AuthenticationPrincipal User user) {
+		Guide foundGuide = guideService.findByEmail(user.getEmail());
+		excursionService.deleteExcursionByExcursionId(id);
+		return "redirect:/guide/" + foundGuide.getGuideId();
+	}
 
 }

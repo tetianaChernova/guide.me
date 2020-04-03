@@ -5,6 +5,7 @@ import com.guideme.model.Excursion;
 import com.guideme.model.Guide;
 import com.guideme.repos.ExcursionRepo;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -34,7 +35,9 @@ public class ExcursionService {
 		return excursionRepo.findAll();
 	}
 
-	public Excursion findByExcursionId(Long id){ return excursionRepo.findByExcursionId(id);}
+	public Excursion findByExcursionId(Long id) {
+		return excursionRepo.findByExcursionId(id);
+	}
 
 	public Iterable<Excursion> findByCityLike(String city) {
 		return excursionRepo.findByCityContainingIgnoreCase(city);
@@ -58,5 +61,10 @@ public class ExcursionService {
 				.meetingPoint(excursionDto.getMeetingPoint())
 				.build();
 		excursionRepo.save(excursion);
+	}
+
+	@Transactional
+	public void deleteExcursionByExcursionId(Long excursionId) {
+		excursionRepo.deleteByExcursionId(excursionId);
 	}
 }

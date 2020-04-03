@@ -2,6 +2,7 @@ package com.guideme.repos;
 
 import com.guideme.model.Excursion;
 import com.guideme.model.Guide;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
@@ -12,4 +13,7 @@ public interface ExcursionRepo extends CrudRepository<Excursion, String> {
 	List<Excursion> findByCityContainingIgnoreCase(String city);
 
 	List<Excursion> findByGuide(Guide guide);
+
+	@Modifying
+	void deleteByExcursionId(Long excursionId);
 }
