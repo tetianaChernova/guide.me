@@ -134,16 +134,33 @@
 
 <script>
 
+    jQuery.validator.addMethod("checkAmountForPositive", function(value, element) {
+        return this.optional(element) || (parseFloat(value) > 0);
+    });
+
+    jQuery.validator.addMethod("checkAmountForLessThanAvailable", function(value, element) {
+        let availablePeopleAmount = ${excursion.amount};
+        return this.optional(element) || (parseFloat(value) <= availablePeopleAmount);
+    });
+
     $("#formfield").validate({
         rules: {
-            amountInput: "required",
-            datepickerInput: {
+            peopleAmount: {
+                required: true,
+                checkAmountForLessThanAvailable: true,
+                checkAmountForPositive: true
+            },
+            bookingDate: {
                 required: true
             },
         },
         messages: {
-            amountInput: "Please enter people amount",
-            datepickerInput: {
+            peopleAmount: {
+                required: "Please enter people amount",
+                checkAmountForPositive: "People amount cannot be less than 1",
+                checkAmountForLessThanAvailable: "People amount cannot be greater than available"
+            },
+            bookingDate: {
                 required: "Please enter booking date"
             }
         },
