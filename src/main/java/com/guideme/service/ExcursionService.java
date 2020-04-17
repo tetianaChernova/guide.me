@@ -47,6 +47,14 @@ public class ExcursionService {
 		return excursionRepo.findByGuide(guide);
 	}
 
+	public List<Excursion> findPersonalExcursionsByGuide(Guide guide) {
+		return excursionRepo.findByGuideAndAmountEquals(guide, 1);
+	}
+
+	public List<Excursion> getMostVisitedExcursions(Guide guide){
+		return  excursionRepo.getMostVisitedExcursions(guide.getGuideId());
+	}
+
 	public void updateExcursion(ExcursionDto excursionDto, Excursion excursionFound) {
 		Excursion excursion = Excursion.builder()
 				.excursionId(excursionFound.getExcursionId())

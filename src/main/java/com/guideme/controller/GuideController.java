@@ -42,11 +42,7 @@ public class GuideController {
 	public String guideProfile(@AuthenticationPrincipal User user,
 							   @PathVariable Long guideId, Model model) {
 		Guide foundedGuide = guideService.findByGuideId(guideId);
-		Iterable<Excursion> excursions;
-		excursions = excursionService.findByGuide(foundedGuide);
-		model.addAttribute("excursionList", excursions);
-		model.addAttribute("guide", foundedGuide);
-		model.addAttribute("user", user);
+		setGuidesExcursionsListsToTheModel(user, model, foundedGuide);
 		return "guideProfile";
 	}
 
@@ -55,11 +51,7 @@ public class GuideController {
 			@AuthenticationPrincipal User user,
 			Model model) {
 		Guide foundedGuide = guideService.findByEmail(user.getEmail());
-		Iterable<Excursion> excursions;
-		excursions = excursionService.findByGuide(foundedGuide);
-		model.addAttribute("excursionList", excursions);
-		model.addAttribute("guide", foundedGuide);
-		model.addAttribute("user", user);
+		setGuidesExcursionsListsToTheModel(user, model, foundedGuide);
 		return "guideProfile";
 	}
 
@@ -93,5 +85,15 @@ public class GuideController {
 		return "redirect:/guide/profile";
 	}
 
+	public void setGuidesExcursionsListsToTheModel(@AuthenticationPrincipal User user, Model model, Guide foundedGuide) {
+		Iterable<Excursion> allExcursions = excursionService.findByGuide(foundedGuide);
+		Iterable<Excursion> personalExcursions = excursionService.findPersonalExcursionsByGuide(foundedGuide);
+		Iterable<Excursion> mostVisitedExcursions = excursionService.getMostVisitedExcursions(foundedGuide);
+		model.addAttribute("allExcursionList", allExcursions);
+		model.addAttribute("personalExcursionList", personalExcursions);
+		model.addAttribute("mostVisitedExcursionList", mostVisitedExcursions);
+		model.addAttribute("guide", foundedGuide);
+		model.addAttribute("user", user);
 
+	}
 }

@@ -18,7 +18,8 @@
                                     <#if guide??>
                                         <#if guide.filename??>
                                             <img src="/img/${guide.filename}" alt="Circle Image"
-                                                 class="img-raised rounded-circle img-fluid" style="width: 140px;height: 140px;">
+                                                 class="img-raised rounded-circle img-fluid"
+                                                 style="width: 140px;height: 140px;">
                                         <#else>
                                             <img src="https://f0.pngfuel.com/png/980/886/male-portrait-avatar-png-clip-art.png"
                                                  alt="Circle Image" class="img-raised rounded-circle img-fluid">
@@ -46,37 +47,83 @@
                             <div class="profile-tabs">
                                 <ul class="nav nav-pills nav-pills-icons justify-content-center" role="tablist">
                                     <li class="nav-item">
-                                        <a class="nav-link active" href="#all-exc" role="tab" data-toggle="tab">
+                                        <a class="nav-link active" href="#all" id="allLink" role="tab" data-toggle="tab">
                                             <i class="material-icons">camera</i>
                                             All
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#works" role="tab" data-toggle="tab">
+                                        <a class="nav-link" href="#personal" id="personalLink" role="tab" data-toggle="tab">
                                             <i class="material-icons">palette</i>
-                                            Work
+                                            Personal
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#favorite" role="tab" data-toggle="tab">
+                                        <a class="nav-link" href="#mostVisited" id="mostVisitedLink" role="tab" data-toggle="tab">
                                             <i class="material-icons">favorite</i>
-                                            Favorite
+                                            Most visited
                                         </a>
                                     </li>
                                 </ul>
                             </div>
                         </div>
                     </div>
-                    <div class="tab-content tab-space" id="all-exc">
-                        <@excards.cards excursions=excursionList isMainPage=false></@excards.cards>
+                    <div class="tab-content tab-space" id="all" style="display: initial;">
+                        <@excards.cards excursions=allExcursionList isMainPage=false></@excards.cards>
+                    </div>
+                    <div class="tab-content tab-space" id="personal" style="display: none;">
+                        <@excards.cards excursions=personalExcursionList isMainPage=false></@excards.cards>
+                    </div>
+                    <div class="tab-content tab-space" id="mostVisited" style="display: none;">
+                        <@excards.cards excursions=mostVisitedExcursionList isMainPage=false></@excards.cards>
                     </div>
                 </div>
             </div>
         </div>
         <footer class="footer text-center ">
-            <p>Made with <a href="https://demos.creative-tim.com/material-kit/index.html" target="_blank">Material
-                    Kit</a>
-                by Creative Tim</p>
+            <p>Made with Love
+                by GuideMe Team</p>
         </footer>
     </div>
 </@c.page>
+
+<script>
+    $(function () {
+        $('#allLink').click(function () {
+
+            let dataDivAll = document.getElementById("all");
+            let dataDivPersonal = document.getElementById("personal");
+            let dataDivMostVisited = document.getElementById("mostVisited");
+            if (dataDivAll.style.display === "none") {
+                dataDivAll.style.display = "initial";
+                dataDivPersonal.style.display = "none";
+                dataDivMostVisited.style.display = "none";
+                $(".show").removeClass('show');
+            }
+        });
+        $('#personalLink').click(function () {
+
+            let dataDivAll = document.getElementById("all");
+            let dataDivPersonal = document.getElementById("personal");
+            let dataDivMostVisited = document.getElementById("mostVisited");
+            if (dataDivPersonal.style.display === "none") {
+                dataDivAll.style.display = "none";
+                dataDivPersonal.style.display = "initial";
+                dataDivMostVisited.style.display = "none";
+                $(".show").removeClass('show');
+            }
+        });
+        $('#mostVisitedLink').click(function () {
+
+            let dataDivAll = document.getElementById("all");
+            let dataDivPersonal = document.getElementById("personal");
+            let dataDivMostVisited = document.getElementById("mostVisited");
+            if (dataDivMostVisited.style.display === "none") {
+                dataDivAll.style.display = "none";
+                dataDivPersonal.style.display = "none";
+                dataDivMostVisited.style.display = "initial";
+                $(".show").removeClass('show');
+            }
+        });
+    });
+</script>

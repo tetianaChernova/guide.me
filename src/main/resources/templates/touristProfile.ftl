@@ -42,9 +42,8 @@
             </div>
         </div>
         <footer class="footer text-center ">
-            <p>Made with <a href="https://demos.creative-tim.com/material-kit/index.html" target="_blank">Material
-                    Kit</a>
-                by Creative Tim</p>
+            <p>Made with Love
+                by GuideMe Team</p>
         </footer>
     </div>
 </@c.page>
