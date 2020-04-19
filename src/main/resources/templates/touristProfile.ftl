@@ -27,13 +27,9 @@
                                 </div>
                                 <div class="name">
                                     <h3 class="title">${tourist.firstName} ${tourist.lastName}</h3>
-                                    <h6>${tourist.email}        ${tourist.phone}</h6>
-                                    <a href="#pablo" class="btn btn-just-icon btn-link btn-dribbble"><i
-                                                class="fa fa-dribbble"></i></a>
-                                    <a href="#pablo" class="btn btn-just-icon btn-link btn-twitter"><i
-                                                class="fa fa-twitter"></i></a>
-                                    <a href="#pablo" class="btn btn-just-icon btn-link btn-pinterest"><i
-                                                class="fa fa-pinterest"></i></a>
+                                    <i class="glyphicon glyphicon-phone"></i>${tourist.phone}</p>
+                                    <p><i class="glyphicon glyphicon-envelope"></i> ${tourist.email}</p>
+                                    <p>${tourist.nationality}, currently living in ${tourist.city}<i class="glyphicon glyphicon-map-marker"></i></p>
                                 </div>
                             </div>
                         </div>

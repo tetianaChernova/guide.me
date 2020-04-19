@@ -32,7 +32,7 @@
                                 <div class="name">
                                     <h3 class="title">${guide.firstName} ${guide.lastName}</h3>
                                     <p>${guide.experience}y. of experince</p>
-                                    <p><i class="glyphicon glyphicon-gift"></i>${guide.birthDate?date}</p>
+                                    <p><i class="glyphicon glyphicon-gift"></i> ${guide.birthDate?date}</p>
                                     <p><i class="glyphicon glyphicon-phone"></i>${guide.phone}</p>
                                     <p><i class="glyphicon glyphicon-envelope"></i> ${guide.email}</p>
                                     <p>${guide.nationality}, currently living in ${guide.city}<i class="glyphicon glyphicon-map-marker"></i></p>
