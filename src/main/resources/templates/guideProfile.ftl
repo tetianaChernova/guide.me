@@ -20,21 +20,22 @@
                                             <img src="/img/${guide.filename}" alt="Circle Image"
                                                  class="img-raised rounded-circle img-fluid"
                                                  style="width: 140px;height: 140px;">
-                                        <#else>
+                                        <#elseif guide.gender = "male">
                                             <img src="https://f0.pngfuel.com/png/980/886/male-portrait-avatar-png-clip-art.png"
+                                                 alt="Circle Image" class="img-raised rounded-circle img-fluid">
+                                            <#else>
+                                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRWKbLa_dJgtKiBItyiLId0m6ZKSbRwtCKCgf9dsgGED2uRcZXJ&usqp=CAU"
                                                  alt="Circle Image" class="img-raised rounded-circle img-fluid">
                                         </#if>
                                     </#if>
                                 </div>
                                 <div class="name">
                                     <h3 class="title">${guide.firstName} ${guide.lastName}</h3>
-                                    <h6>${guide.email}        ${guide.phone}</h6>
-                                    <a href="#pablo" class="btn btn-just-icon btn-link btn-dribbble"><i
-                                                class="fa fa-dribbble"></i></a>
-                                    <a href="#pablo" class="btn btn-just-icon btn-link btn-twitter"><i
-                                                class="fa fa-twitter"></i></a>
-                                    <a href="#pablo" class="btn btn-just-icon btn-link btn-pinterest"><i
-                                                class="fa fa-pinterest"></i></a>
+                                    <p>${guide.experience}y. of experince</p>
+                                    <p><i class="glyphicon glyphicon-gift"></i>${guide.birthDate?date}</p>
+                                    <p><i class="glyphicon glyphicon-phone"></i>${guide.phone}</p>
+                                    <p><i class="glyphicon glyphicon-envelope"></i> ${guide.email}</p>
+                                    <p>${guide.nationality}, currently living in ${guide.city}<i class="glyphicon glyphicon-map-marker"></i></p>
                                 </div>
                             </div>
                         </div>
