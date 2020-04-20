@@ -14,7 +14,7 @@ import java.util.Date;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class GuideDto extends FileConsistingDto{
+public class GuideDto extends FileConsistingDto {
 	private String firstName;
 	private String lastName;
 	private String email;

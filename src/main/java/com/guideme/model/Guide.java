@@ -5,7 +5,6 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -47,6 +46,7 @@ public class Guide {
 	private String filename;
 	@Column(nullable = false, length = 2048)
 	private String description;
+
 	@OneToMany(mappedBy = "guide")
 	private Set<Excursion> excursions;
 }

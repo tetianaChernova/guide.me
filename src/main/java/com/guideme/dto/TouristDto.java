@@ -11,7 +11,7 @@ import lombok.Setter;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class TouristDto extends FileConsistingDto{
+public class TouristDto extends FileConsistingDto {
 	private String firstName;
 	private String lastName;
 	private String email;

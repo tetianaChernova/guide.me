@@ -51,8 +51,8 @@ public class ExcursionService {
 		return excursionRepo.findByGuideAndAmountEquals(guide, 1);
 	}
 
-	public List<Excursion> getMostVisitedExcursions(Guide guide){
-		return  excursionRepo.getMostVisitedExcursions(guide.getGuideId());
+	public List<Excursion> getMostVisitedExcursions(Guide guide) {
+		return excursionRepo.getMostVisitedExcursions(guide.getGuideId());
 	}
 
 	public void updateExcursion(ExcursionDto excursionDto, Excursion excursionFound) {

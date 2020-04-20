@@ -34,8 +34,8 @@ public class MailConfig {
 		Properties properties = mailSender.getJavaMailProperties();
 		properties.setProperty("mail.transport.protocol", protocol);
 //		properties.setProperty("mail.debug", debug);
-		properties.setProperty("mail.smtp.starttls.enable","true");
-		properties.setProperty("mail.smtp.EnableSSL.enable","true");
+		properties.setProperty("mail.smtp.starttls.enable", "true");
+		properties.setProperty("mail.smtp.EnableSSL.enable", "true");
 		return mailSender;
 	}
 }

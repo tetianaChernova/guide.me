@@ -35,14 +35,6 @@ public class UserService implements UserDetailsService {
 		return userRepo.findByEmail(email);
 	}
 
-//	;
-
-//	public User save(String email) {
-//		return userRepo.findByEmail(email);
-//	}
-//
-//	;
-
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 		User foundCreds = userRepo.findByEmail(email);
@@ -83,7 +75,7 @@ public class UserService implements UserDetailsService {
 				.role(role)
 				.password(passwordEncoder.encode(password))
 				.build();
-		 return userRepo.save(user);
+		return userRepo.save(user);
 	}
 
 	public boolean activateUser(String code) {

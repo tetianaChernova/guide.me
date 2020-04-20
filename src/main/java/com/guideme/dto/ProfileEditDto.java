@@ -12,7 +12,7 @@ import org.hibernate.validator.constraints.Length;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProfileEditDto extends FileConsistingDto{
+public class ProfileEditDto extends FileConsistingDto {
 	private String firstName;
 	private String lastName;
 	private String phone;

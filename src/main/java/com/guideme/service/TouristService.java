@@ -33,11 +33,11 @@ public class TouristService {
 		return true;
 	}
 
-	public Tourist findByTouristId(Long id){
+	public Tourist findByTouristId(Long id) {
 		return touristRepo.findByTouristId(id);
 	}
 
-	public Tourist findByEmail(String email){
+	public Tourist findByEmail(String email) {
 		return touristRepo.findByEmail(email);
 	}
 

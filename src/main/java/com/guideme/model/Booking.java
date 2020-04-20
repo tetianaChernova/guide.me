@@ -32,7 +32,7 @@ public class Booking {
 	private Integer totalPrice;
 	@Column(nullable = false)
 	private Date bookingDate;
-	@Column (nullable = false)
+	@Column(nullable = false)
 	private Boolean isConfirmed;
 	private Boolean isCanceled;
 

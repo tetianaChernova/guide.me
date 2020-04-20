@@ -10,6 +10,7 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface ExcursionRepo extends CrudRepository<Excursion, String> {
+
 	Excursion findByExcursionId(Long id);
 
 	List<Excursion> findByCityContainingIgnoreCase(String city);
