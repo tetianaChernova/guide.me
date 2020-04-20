@@ -1,7 +1,7 @@
 <#setting number_format="0;;roundingMode=floor">
 <#import "parts/common.ftl" as c>
 <#import "parts/navigation.ftl" as navbar>
-<@c.page "/static/guideprofile.css">
+<@c.page "/static/editexcursion.css">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark main main-raised" style="margin: 0;">
         <@navbar.nav user></@navbar.nav>
     </nav>
@@ -80,7 +80,7 @@
                             <button class="inline" type="submit">Edit this excursion</button>
                         </div>
                     </form>
-                    <button class="btn btn-danger" data-toggle="modal" data-target="#myModalDelete"
+                    <button class="btn-danger" data-toggle="modal" data-target="#myModalDelete"
                             style="width: 440px; float: right; margin-left: 60%; margin-top: -3%;">Delete
                     </button>
                 </div>
@@ -116,104 +116,18 @@
                 $('#imgSrc').attr('src', e.target.result);
                 $('#imgSrcNoPhoto').attr('src', e.target.result);
             };
-
-            reader.readAsDataURL(input.files[0]); // convert to base64 string
+            reader.readAsDataURL(input.files[0]);
         }
     }
-
     $("#imgInput").change(function () {
         readURL(this);
     });
 </script>
+
 <style>
-
-    #img-wrap {
-        width: 65%;
-        height: 82%;
-        float: left;
-        overflow: auto;
-        margin: 5% 0 0 -100px;
-    }
-
-    .excImg {
-        max-width: 100%;
-        max-height: 100%;
-        margin-left: auto;
-        margin-right: auto;
-        display: block;
-    }
-
-    /*.inline{*/
-    /*    display: inline-block;*/
-    /*}*/
-    .info {
-        width: 440px;
-        height: 100%;
-        float: right;
-        padding: 50px 50px 50px 0;
-        padding: 50px 0px 50px 0;
-    }
-
-    .info h1 {
-        font-size: 1.5em;
-        font-weight: 400;
-        float: left;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-    }
-
-    .info h2 {
-        font-size: 1em;
-        letter-spacing: 1.5px;
-        text-transform: uppercase;
-        padding: 5px 0 20px 0;
-        float: left;
-        color: #8199A3;
-    }
-
-    .info p textarea label {
-        clear: both;
-        margin-bottom: 7px;
-        line-height: 1.5em;
-        font-size: 1em;
-        letter-spacing: 0.5px;
-    }
-
-    .info #importantp, .info {
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        font-size: 0.9em;
-    }
-
-    .info #price, #amount, #meetingPoint, #city, #durationHours, #durationMinutes {
-        margin-top: 0;
-        font-size: 16px;
-        float: none;
-    }
-
-    .important1, .important3, .important5 {
-        width: 50%;
-        float: left;
-        margin-top: 15px;
-    }
-
-    .important2, .important4, .important6 {
-        width: 50%;
-        float: right;
-        margin-top: 15px;
-    }
-
     button {
-        width: 100%;
         margin-top: 30px;
-        border: none;
-        background: #1abc9c;
-        padding: 20px 0;
-        font-size: 1.1em;
         line-height: 1.1em;
-        letter-spacing: 1px;
-        -webkit-border-radius: 5px;
-        -moz-border-radius: 5px;
         border-radius: 5px;
         color: #F2F2F2;
         cursor: pointer;

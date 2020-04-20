@@ -1,7 +1,7 @@
 <#import "parts/common.ftl" as c>
 <#import "parts/excards.ftl" as excards>
 <#import "parts/navigation.ftl" as navbar>
-<@c.page "/static/guideprofile.css">
+<@c.page "/static/touristprofile.css">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark main main-raised" style="margin: 0;">
         <@navbar.nav user></@navbar.nav>
     </nav>

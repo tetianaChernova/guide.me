@@ -2,7 +2,8 @@
 <#import "parts/common.ftl" as c>
 <#import "parts/excards.ftl" as excards>
 <#import "parts/navigation.ftl" as navbar>
-<@c.page "/static/guideprofile.css">
+<@c.page "/static/excursionpage.css">
+
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark main main-raised" style="margin: 0;">
         <@navbar.nav user></@navbar.nav>
     </nav>
@@ -117,7 +118,7 @@
                         <input type="hidden" name="_csrf" value="${_csrf.token}"/>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <input class="btn btn-primary" type="submit" id="submit_button" value="Confirm">
+                            <input style="margin-top: 28px" class="btn btn-primary" type="submit" id="submit_button" value="Confirm">
                         </div>
                     </div>
                 </div>
@@ -197,115 +198,12 @@
 
 
 <style>
-
-    #img-wrap {
-        width: 65%;
-        height: 82%;
-        float: left;
-        overflow: auto;
-        margin: 6% 0 0 -100px;
-    }
-
-    .excImg {
-        max-width: 100%;
-        max-height: 100%;
-        margin-left: auto;
-        margin-right: auto;
-        display: block;
-    }
-
-    .modal-title {
-        overflow: auto;
-        white-space: nowrap;
-        width: 600px;
-        font-size: 130%;
-    }
-
-    .info {
-        width: 440px;
-        height: 100%;
-        float: right;
-        padding: 50px 50px 50px 0;
-        padding: 50px 0px 50px 0;
-    }
-
-    .info h1 {
-        font-size: 1.5em;
-        font-weight: 400;
-        float: left;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-    }
-
-    .info h2 {
-        font-size: 1em;
-        letter-spacing: 1.5px;
-        text-transform: uppercase;
-        padding: 5px 0 20px 0;
-        float: left;
-        color: #8199A3;
-    }
-
-    .info p {
-        clear: both;
-        margin-bottom: 7px;
-        line-height: 1.5em;
-        font-size: 1em;
-        letter-spacing: 0.5px;
-    }
-
-    .info #importantp, .info {
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        font-size: 0.9em;
-    }
-
-    .info #price, #amount, #meeting_point, #duration {
-        margin-top: 15px;
-        float: none;
-    }
-
-    .important1, .important3 {
-        width: 50%;
-        float: left;
-        margin-top: 15px;
-    }
-
-    .important2, .important4 {
-        width: 50%;
-        float: right;
-        margin-top: 15px;
-    }
-
     button {
-        width: 100%;
         margin-top: 30px;
-        border: none;
-        background: #1abc9c;
-        padding: 20px 0;
         font-size: 1.1em;
         line-height: 1.1em;
-        letter-spacing: 1px;
-        -webkit-border-radius: 5px;
-        -moz-border-radius: 5px;
-        -ms-border-radius: 5px;
         border-radius: 5px;
         color: #F2F2F2;
         cursor: pointer;
-    }
-
-    .avatar {
-        vertical-align: middle;
-        width: 100px;
-        height: 100px;
-        border-radius: 50%;
-        margin-top: -50px;
-        float: right;
-    }
-
-    .avatar_title {
-        float: left;
-        clear: left;
-        display: inline;
     }
 </style>

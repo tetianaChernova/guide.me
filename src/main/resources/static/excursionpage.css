@@ -1,0 +1,182 @@
+html * {
+    -webkit-font-smoothing: antialiased;
+}
+
+.profile-page .page-header {
+    height: 380px;
+    background-position: center;
+}
+
+.page-header {
+    height: 100vh;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    display: flex;
+    align-items: center;
+}
+
+.header-filter:after, .header-filter:before {
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    display: block;
+    left: 0;
+    top: 0;
+    content: "";
+}
+
+.header-filter::before {
+    background: rgba(0, 0, 0, .5);
+}
+
+.main-raised {
+    margin: -60px 30px 0;
+    border-radius: 6px;
+    box-shadow: 0 16px 24px 2px rgba(0, 0, 0, .14), 0 6px 30px 5px rgba(0, 0, 0, .12), 0 8px 10px -5px rgba(0, 0, 0, .2);
+}
+
+.main {
+    background: #FFF;
+    position: relative;
+    z-index: 3;
+}
+
+.rounded-circle {
+    border-radius: 50% !important;
+}
+
+p {
+    font-size: 14px;
+    margin: 0 0 10px;
+}
+
+footer {
+    margin-top: 10px;
+    color: #555;
+    padding: 25px;
+    font-weight: 300;
+}
+
+.footer p {
+    font-size: 14px;
+    margin: 0 0 10px;
+    font-weight: 300;
+}
+
+footer p a {
+    color: #555;
+    font-weight: 400;
+}
+
+#img-wrap {
+    width: 65%;
+    height: 82%;
+    float: left;
+    overflow: auto;
+    margin: 6% 0 0 -100px;
+}
+
+.excImg {
+    max-width: 100%;
+    max-height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.info {
+    width: 440px;
+    height: 100%;
+    float: right;
+    padding: 50px 0 50px 0;
+}
+
+.info h1 {
+    font-size: 1.5em;
+    font-weight: 400;
+    float: left;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.info h2 {
+    font-size: 1em;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 5px 0 20px 0;
+    float: left;
+    color: #8199A3;
+}
+
+.info p {
+    clear: both;
+    margin-bottom: 7px;
+    line-height: 1.5em;
+    font-size: 1em;
+    letter-spacing: 0.5px;
+}
+
+.info #importantp, .info {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.9em;
+}
+
+.info #price, #amount, #meeting_point, #duration {
+    margin-top: 15px;
+    float: none;
+}
+
+.modal-title {
+    overflow: auto;
+    white-space: nowrap;
+    width: 600px;
+    font-size: 130%;
+}
+
+.important1, .important3 {
+    width: 50%;
+    float: left;
+    margin-top: 15px;
+}
+
+.important2, .important4 {
+    width: 50%;
+    float: right;
+    margin-top: 15px;
+}
+
+button {
+    width: 100%;
+    margin-top: 30px;
+    border: none;
+    background: #1abc9c;
+    padding: 20px 0;
+    font-size: 1.1em;
+    line-height: 1.1em;
+    letter-spacing: 1px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    border-radius: 5px;
+    color: #F2F2F2;
+    cursor: pointer;
+}
+
+.avatar {
+    vertical-align: middle;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-top: -50px;
+    float: right;
+}
+
+.avatar_title {
+    float: left;
+    clear: left;
+    display: inline;
+}
