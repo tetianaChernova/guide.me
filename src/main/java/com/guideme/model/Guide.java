@@ -41,8 +41,6 @@ public class Guide {
 	@Column(nullable = false)
 	private Integer experience;
 	@Column(nullable = false)
-	private Double rating;
-	@Column(nullable = false)
 	private String nationality;
 	@Column(nullable = false)
 	private String city;

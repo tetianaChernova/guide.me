@@ -25,7 +25,6 @@ public class GuideService {
 				.gender(guideDto.getGender())
 				.experience(guideDto.getExperience())
 				.description(guideDto.getDescription())
-				.rating((double) 0)
 				.city(guideDto.getCity())
 				.nationality(guideDto.getNationality())
 				.filename(guideDto.getFilename())
