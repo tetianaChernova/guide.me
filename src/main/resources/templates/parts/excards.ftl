@@ -25,24 +25,30 @@
                                     <img id="fixedAvatar" src="/img/${exc.guide.filename}"
                                          height="60" width="60"
                                          class="avatar rounded-circle"></a>
-                            <#else>
+                            <#elseif exc.guide.gender = "male">
                                 <a href="/guide/${exc.guide.guideId}">
                                     <img id="fixedAvatar"
                                          src="https://f0.pngfuel.com/png/980/886/male-portrait-avatar-png-clip-art.png"
                                          height="60" width="60"
                                          class="avatar rounded-circle"></a>
+                            <#else>
+                                <a href="/guide/${exc.guide.guideId}">
+                                    <img id="fixedAvatar"
+                                         src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRWKbLa_dJgtKiBItyiLId0m6ZKSbRwtCKCgf9dsgGED2uRcZXJ&usqp=CAU"
+                                         height="60" width="60"
+                                         class="avatar rounded-circle"></a>
                             </#if>
                         </#if>
-                            <div class="pull-right" style="font-size: 110%">
-                                <div>
-                                    <span> ${exc.city}, ${exc.meetingPoint}</span>
-                                    <span class="glyphicon glyphicon-globe" style="font-size: 130%;"></span>
-                                </div>
-                                <div>
-                                    <span style="margin-left: 59%"> ${exc.priceForOne}</span>
-                                    <span class="glyphicon glyphicon-usd" style="float:right; font-size: 130%;"></span>
-                                </div>
+                        <div class="pull-right" style="font-size: 110%">
+                            <div>
+                                <span> ${exc.city}, ${exc.meetingPoint}</span>
+                                <span class="glyphicon glyphicon-globe" style="font-size: 130%;"></span>
                             </div>
+                            <div>
+                                <span style="margin-left: 59%"> ${exc.priceForOne}</span>
+                                <span class="glyphicon glyphicon-usd" style="float:right; font-size: 130%;"></span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

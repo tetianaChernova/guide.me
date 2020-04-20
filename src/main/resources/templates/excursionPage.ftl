@@ -31,9 +31,13 @@
                                 <a href="/guide/${guide.guideId}">
                                     <img src="/img/${guide.filename}" alt="Avatar" class="avatar rounded-circle">
                                 </a>
-                            <#else>
+                            <#elseif guide.gender = "male">
                                 <a href="/guide/${guide.guideId}">
                                     <img src="https://f0.pngfuel.com/png/980/886/male-portrait-avatar-png-clip-art.png"
+                                         alt="Avatar" class="avatar rounded-circle"></a>
+                            <#else>
+                                <a href="/guide/${guide.guideId}">
+                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRWKbLa_dJgtKiBItyiLId0m6ZKSbRwtCKCgf9dsgGED2uRcZXJ&usqp=CAU"
                                          alt="Avatar" class="avatar rounded-circle"></a>
                             </#if>
                         </#if>
@@ -118,7 +122,8 @@
                         <input type="hidden" name="_csrf" value="${_csrf.token}"/>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <input style="margin-top: 28px" class="btn btn-primary" type="submit" id="submit_button" value="Confirm">
+                            <input style="margin-top: 28px" class="btn btn-primary" type="submit" id="submit_button"
+                                   value="Confirm">
                         </div>
                     </div>
                 </div>
@@ -135,11 +140,11 @@
 
 <script>
 
-    jQuery.validator.addMethod("checkAmountForPositive", function(value, element) {
+    jQuery.validator.addMethod("checkAmountForPositive", function (value, element) {
         return this.optional(element) || (parseFloat(value) > 0);
     });
 
-    jQuery.validator.addMethod("checkAmountForLessThanAvailable", function(value, element) {
+    jQuery.validator.addMethod("checkAmountForLessThanAvailable", function (value, element) {
         let availablePeopleAmount = ${excursion.amount};
         return this.optional(element) || (parseFloat(value) <= availablePeopleAmount);
     });
