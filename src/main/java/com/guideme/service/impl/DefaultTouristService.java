@@ -56,4 +56,9 @@ public class DefaultTouristService implements TouristService {
 		tourist.setFilename(profileEditDto.getFilename());
 		touristRepo.save(tourist);
 	}
+
+	@Override
+	public Integer getConfirmedBookingsNum(Tourist foundedTourist) {
+		return touristRepo.getConfirmedBookingNum(foundedTourist.getTouristId());
+	}
 }

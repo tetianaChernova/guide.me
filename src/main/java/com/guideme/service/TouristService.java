@@ -12,4 +12,6 @@ public interface TouristService {
 	Tourist findByEmail(String email);
 
 	void updateTourist(ProfileEditDto profileEditDto, Tourist tourist);
+
+	Integer getConfirmedBookingsNum(Tourist foundedTourist);
 }

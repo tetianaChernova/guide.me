@@ -37,7 +37,9 @@ public class TouristController {
 	public String touristProfile(@AuthenticationPrincipal User user,
 								 @PathVariable Long touristId, Model model) {
 		Tourist foundedTourist = touristService.findByTouristId(touristId);
+		Integer bookingsNumber = touristService.getConfirmedBookingsNum(foundedTourist);
 		model.addAttribute("tourist", foundedTourist);
+		model.addAttribute("bookingsNumber", bookingsNumber);
 		model.addAttribute("user", user);
 		return "touristProfile";
 	}
@@ -47,7 +49,9 @@ public class TouristController {
 			@AuthenticationPrincipal User user,
 			Model model) {
 		Tourist foundedTourist = touristService.findByEmail(user.getEmail());
+		Integer bookingsNumber = touristService.getConfirmedBookingsNum(foundedTourist);
 		model.addAttribute("tourist", foundedTourist);
+		model.addAttribute("bookingsNumber", bookingsNumber);
 		model.addAttribute("user", user);
 		return "touristProfile";
 	}

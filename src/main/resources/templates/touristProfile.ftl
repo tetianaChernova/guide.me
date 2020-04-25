@@ -27,7 +27,8 @@
                                 </div>
                                 <div class="name">
                                     <h3 class="title">${tourist.firstName} ${tourist.lastName}</h3>
-                                    <i class="glyphicon glyphicon-phone"></i>${tourist.phone}</p>
+                                    <p>${bookingsNumber} bookings <i class="glyphicon glyphicon-ok"></i></p>
+                                    <p><i class="glyphicon glyphicon-phone"></i>${tourist.phone}</p>
                                     <p><i class="glyphicon glyphicon-envelope"></i> ${tourist.email}</p>
                                     <p>${tourist.nationality}, currently living in ${tourist.city}<i class="glyphicon glyphicon-map-marker"></i></p>
                                 </div>
