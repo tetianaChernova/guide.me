@@ -118,9 +118,3 @@
         </form>
     </div>
 </@c.page>
-
-<style>
-    body {
-        background-image: url('https://cdn.contexttravel.com/image/upload/c_fill,q_60,w_2600/v1549318570/production/city/hero_image_2_1549318566.jpg');
-    }
-</style>
