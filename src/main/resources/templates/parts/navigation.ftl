@@ -23,7 +23,7 @@
                         <a class="dropdown-item" href="/tourist/profile/edit">Change profile</a>
                     </#if>
                     <#if user.role="GUIDE">
-                        <a class="dropdown-item" href="/excursions">Create excursions</a>
+                        <a class="dropdown-item" href="/excursions">Create excursion</a>
                     </#if>
                 </div>
             </li>
